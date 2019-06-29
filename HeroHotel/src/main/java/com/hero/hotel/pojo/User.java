@@ -110,6 +110,33 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", account=" + account + ", password=" + password + ", tel=" + tel + ", monetary="
+				+ monetary + ", roleid=" + roleid + ", infoid=" + infoid + ", createtime=" + createtime + ", flag="
+				+ flag + ", rm=" + rm + ", info=" + info + ", vip=" + vip + ", code=" + code + ", role=" + role + "]";
+	}
+	public User(Integer id, String account, String password, String tel, BigDecimal monetary, Integer roleid,
+			Integer infoid, Date createtime, Integer flag, Integer rm, Info info, Vip vip, String code, Role role) {
+		super();
+		this.id = id;
+		this.account = account;
+		this.password = password;
+		this.tel = tel;
+		this.monetary = monetary;
+		this.roleid = roleid;
+		this.infoid = infoid;
+		this.createtime = createtime;
+		this.flag = flag;
+		this.rm = rm;
+		this.info = info;
+		this.vip = vip;
+		this.code = code;
+		this.role = role;
+	}
+	public User() {
+		super();
+	}
 	
 	
 }

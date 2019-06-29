@@ -1,6 +1,9 @@
 package com.hero.hotel.realm;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.hero.hotel.pojo.User;
@@ -9,6 +12,7 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -35,7 +39,25 @@ public class UserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		System.out.println("正在授权");
-		return null;
+		//获取登录账号(手机号或账号)
+		String account=(String) principals.getPrimaryPrincipal();
+	       //判断账号是手机号或者账号
+		String role="";
+		if(account.matches(RegexUtil.REGEX_MOBILE)) {
+			//根据手机号查询账户角色
+			 role=userDao.findRoleByTel(account);
+			System.out.println("用户角色"+role);
+		}else {
+			//根据账号查询账户角色
+			 role=userDao.findRoleByAccount(account);
+			System.out.println("用户角色"+role);
+		}
+		
+		Set<String> roles = new HashSet<>();
+		roles.add(role);
+		SimpleAuthorizationInfo info=new SimpleAuthorizationInfo(roles);
+		  return info;
+
 	}
 
 	@Override
@@ -58,7 +80,6 @@ public class UserRealm extends AuthorizingRealm {
 			SimpleAuthenticationInfo info=
 		new SimpleAuthenticationInfo(account,code,getName());
 			return info;
-			
 		}else {
 			//账号密码登录
 			//从数据库中查找密码
@@ -73,6 +94,5 @@ public class UserRealm extends AuthorizingRealm {
 		}
 	}
 
-	
 
 }

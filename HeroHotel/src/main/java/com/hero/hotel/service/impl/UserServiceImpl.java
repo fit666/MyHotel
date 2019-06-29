@@ -103,25 +103,6 @@ public class UserServiceImpl implements UserService {
 				// 将用户所有信息存入session
 				// 查找用户对应的vip
 
-				BigDecimal monetar = realuser.getMonetary();
-				Double monetary = monetar.doubleValue();
-				if (monetary <= 0.0) {
-					int i = 1;
-					Vip vip = userDao.findVipByID(i);
-					realuser.setVip(vip);
-				} else if (monetary < 1000.0) {
-					int i = 2;
-					Vip vip = userDao.findVipByID(i);
-					realuser.setVip(vip);
-				} else if (monetary < 2500.0) {
-					int i = 3;
-					Vip vip = userDao.findVipByID(i);
-					realuser.setVip(vip);
-				} else if (monetary < 5000.0) {
-					int i = 4;
-					Vip vip = userDao.findVipByID(i);
-					realuser.setVip(vip);
-				}
 				BigDecimal monetary1 = realuser.getMonetary();
 				//查找数据库中vip等级
 				int i=userDao.findVipId(monetary1);
@@ -177,31 +158,16 @@ public class UserServiceImpl implements UserService {
 				customizedToken.setRememberMe(true);
 			}
 			try {
-				System.out.println("try");
 				currentUser.login(customizedToken);
 				result = "登录成功";
 				// 将用户所有信息存入session
 				// 查找用户对应的vip
 
-				BigDecimal monetar = realuser.getMonetary();
-				Double monetary = monetar.doubleValue();
-				if (monetary <= 0.0) {
-					int i = 1;
-					Vip vip = userDao.findVipByID(i);
-					realuser.setVip(vip);
-				} else if (monetary < 1000.0) {
-					int i = 2;
-					Vip vip = userDao.findVipByID(i);
-					realuser.setVip(vip);
-				} else if (monetary < 2500.0) {
-					int i = 3;
-					Vip vip = userDao.findVipByID(i);
-					realuser.setVip(vip);
-				} else if (monetary < 5000.0) {
-					int i = 4;
-					Vip vip = userDao.findVipByID(i);
-					realuser.setVip(vip);
-				}
+				BigDecimal monetary1 = realuser.getMonetary();
+				//查找数据库中vip等级
+				int i=userDao.findVipId(monetary1);
+				Vip vip = userDao.findVipByID(i);
+				realuser.setVip(vip);
 
 				session.setAttribute("user", realuser);
 				System.out.println(result);
@@ -211,6 +177,7 @@ public class UserServiceImpl implements UserService {
 				return result;
 			}
 		}
+		result="你已验证请先注销";
 		return result;
 	}
 
@@ -265,16 +232,7 @@ public class UserServiceImpl implements UserService {
 		}
 		// 给账号密码加密
 		user.setPassword(new SimpleHash("MD5", user.getPassword(), null, 1024).toString());
-		/*
-		 * // 生成创建时间 String createTime = new
-		 * SimpleDateFormat("yy/MM/dd HH:mm:ss").format(new Date());
-		 */
-		user.setCreatetime(new Date());// 将信息插入到数据库
-		// 生成创建时间
-		// String createTime = new SimpleDateFormat("yy/MM/dd HH:mm:ss").format(new
-		// Date());
-		Date createTime = new Date();
-		user.setCreatetime(createTime);// 将信息插入到数据库
+		
 		// 默认角色为1，普通用户
 		user.setRoleid(1);
 		boolean b = userDao.insertAccount(user);
