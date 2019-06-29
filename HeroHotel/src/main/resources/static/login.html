@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=0.95, user-scalable=no" />
+<title>新用户登录</title>
+<meta name="description" content="说明" />
+<meta name="keywords" content="关键字" />
+<link rel="stylesheet" href="shuaixinjie/css/style.css" />
+<link rel="stylesheet" href="shuaixinjie/css/responsive.css" />
+<link rel="stylesheet" href="css/login.css" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jq-slideVerify.js"></script>
+
+
+	<style type="text/css">
+		ul li{
+		 list-style: none;
+		 }
+	</style>
+</head>
+
+<body class="infor">
+	<div id="slider-wrap">
+	    <div class="camera_overlayer"></div>
+	</div>
+	<!--HEADER-->
+	<div id="wrapper">
+	<div id="container">
+        <header id="header">
+                    <div id="logo">
+                <a href="index.html"><strong>HERO</strong>酒店</a>
+            </div>
+            <div id="searchbox">
+                <form action="#">
+                    <input type="text" id="search" placeholder="Search" />
+                    <button type="submit"></button>
+                </form>
+            </div>
+            <div id="navigation">
+                <ul id="nav">
+                	<li class="selected"><a href="../login.html"  id="loginbox">登录/注册</a></li>
+                    <li ><a href="shuaixinjie/bookroom.html">在线预定</a></li>
+                    <li><a href="shuaixinjie/browse.html">酒店一览</a>
+                    </li>
+                    <li><a href="gd.html">酒店位置</a></li>
+                    <li ><a href="../share.html">留言</a></li>
+                </ul>
+            </div>
+        </header>
+	<!--HEADER-->
+
+	<!--身-->
+	<input type="hidden"  value="0" id="flag" >
+	<div class="container_wrap"   style="position: relative;">
+		<div class="container">
+			<!--左-->
+			<div class="container_l">
+				<div>
+				<a style="font-size: 30px ;color: blue;" href="login.html" >用户登录</a>
+				<a style="font-size: 30px;" href="login2.html" >手机登录</a>
+				</div>	
+				<div class="form_list">
+					<ul>
+						<li class="clearfix" style="font-size:20px"><span class="s1">用户名:</span> <span
+							class="s2"><input type="text" style="height: 40px" class="valid_ipt"
+							 placeholder="账号为大写或小写字母开头，6-20位字母或数字组成"
+								id="account" 
+								 /> 
+								 </span>
+								 <span  class="s3" id="message1" ></span>
+								 </li>
+						<li class="clearfix" style="font-size:20px"><span class="s1">密 码:</span> <span
+							class="s2"><input type="password" style="height: 40px" class="valid_ipt"
+								id="pass" placeholder="请输入您的密码，长度在6~12个字符之间"
+								 /> </span>
+								 <span  class="s3" id="message2" ></span>
+								 </li>
+						<!-- <li class="clearfix"><span class="s1">验证码:</span> <span
+							class="s2"><input type="text" class="valid_ipt"
+								id="codeValue"  /> </span>
+								<span  class="s3" id="message3" ></span>
+								</li> -->
+								
+								<!-- 提示消息 -->
+							<li class="clearfix"><span class="s1">&nbsp;</span> 
+								<span class="s2">
+								<div class="verify-wrap" id="verify-wrap2"></div>
+								</span> 
+							</li>
+							<li class="clearfix"><span class="s1">&nbsp;</span> 
+							<span class="s2" style="color: red" id="message4" >
+							</span> 
+									</li>
+					</ul>
+					<div class="yes_rule">
+						<input id="rememberMe" name="" type="checkbox" value=""
+							checked="checked" /><label for="rememberMe">记住我(两周免登录)</label>
+					</div>
+					
+					<div class="btn_area clearfix">
+						<button id="sub_btn" class="btn1" onclick="login()">登 录</button>
+						<a class="a1" href="forget.html">忘记密码？</a>
+					</div>
+				</div>
+			</div>
+			<!--右-->
+			<div class="container_r">
+				<div class="register_right">
+					<h2>注册</h2>
+					<div class="user_ishave">
+						<p>还没有黄山 &middot; 醉温泉会员账号？</p>
+						<p class="p1">
+							<a href="register.html" class="btn1">轻松注册</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--尾部-->
+	<div class="footer">Copyright &copy; 2014 黄山 &middot; 醉温泉 All
+		Rights Reserved. 版权所有&nbsp;&nbsp;&nbsp;&nbsp;皖ICP备11009137号</div>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript">
+		$(function(){
+				
+			/* var i=slideVerify2.slideFinishState; */
+			
+			var SlideVerifyPlug = window.slideVerifyPlug;
+			
+			var slideVerify2 = new SlideVerifyPlug('#verify-wrap2',{
+				wrapWidth:'250',
+	            initText:'请按住滑块',
+	            sucessText:'验证通过',
+	            getSucessState:function(res){
+	           		//当验证完成的时候 会 返回 res 值 true，只留了这个应该够用了 
+	           		
+	           		$("#flag").val("1");
+	           	}
+			});
+			$("#resetBtn2").on('click',function(){
+				 slideVerify2.resetVerify(); 
+			})
+			$("#getState2").on('click',function(){
+				alert(slideVerify2.slideFinishState);
+				
+			})
+		})
+	</script>
+</div>
+</div>
+</body>
+</html>

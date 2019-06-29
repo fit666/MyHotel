@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<meta charset="utf-8">
+<title>TravelSite Theme</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+
+
+<!-- Mobile Specific
+================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+<link rel="stylesheet" href="css/bookroom.css" />
+
+
+<!-- Java Script
+================================================== -->
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile.customized.min.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script> 
+<script type="text/javascript" src="js/camera.min.js"></script> 
+<script type="text/javascript" src="js/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="js/selectnav.min.js"></script>
+<!--<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=AIzaSyB3tShW1hLlV2lYW8_sCVln6TLF2bWvgU8"></script>-->
+<script type="text/javascript" src="js/jquery.googlemaps.1.01.min.js"></script>
+<script type="text/javascript" src="js/theme.js"></script>
+<script type="text/javascript" src="js/BookRoom.js"></script>
+<script type="text/javascript" src="js/landi.js"></script>
+<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body class="home">
+<div id="slider-wrap">
+	<div class="camera_wrap" id="camera-wrap">
+		<div data-src="images/uploads/1280x800/st-basil.jpg">
+		
+			<div class="camera_caption moveFromBottom camera_text_center">
+				<div class="caption_slider h2">
+					30% Discount : 3 days travel to Moscow
+				</div>
+			</div>
+			
+		</div>
+		<div data-src="images/uploads/1280x800/v1.jpg">
+        
+        	<div class="camera_caption moveFromLeft camera_text_center">
+				<div class="caption_slider h2">
+					Luxurious holiday in Castle
+				</div>
+			</div>
+        
+        </div>
+		<div data-src="images/uploads/1280x800/moscow.jpg">
+        	
+            <div class="camera_caption fadeIn camera_text_center">
+				<div class="caption_slider h2">
+					30% Discount : 3 days travel to Moscow
+				</div>
+			</div>
+        
+        </div>
+		<div data-src="images/uploads/1280x800/temple-kyoto.jpg">
+        
+        	<div class="camera_caption moveFromBottom camera_text_center">
+				<div class="caption_slider h2">
+					Japan most interesting spot
+				</div>
+			</div>
+        
+        </div>
+		
+		
+	</div><!--camera-wrap -->
+</div>
+
+<div id="wrapper">
+	<div id="container">
+		<!--start header -->
+		<header id="header">
+			<div id="logo">
+				<a href="index.html"><strong>英雄</strong>酒店</a>
+			</div>	
+			<div id="searchbox">
+				<form action="#">
+					<input type="text" id="search" placeholder="Search" />
+					<button type="submit" onclick="search1()"></button>
+				</form>
+			</div>
+			<div id="navigation">
+				<ul id="nav">
+					<li ><a href="user_center.html" style="display: none;" id="infobox">个人信息</a></li>
+					<li ><a href="../login.html" style="display: none;" id="loginbox">登录/注册</a></li>
+					<li class="selected"><a href="bookroom.html">在线预定</a></li>
+					<li><a href="browse.html">酒店一览</a></li>
+					<li><a href="../gd.html">酒店位置</a></li>
+					<li><a href="../share.html">留言</a></li>
+				</ul>
+			</div>
+		</header>
+
+		
+
+		<section id="content">
+			<div class="two-third">
+				<div id="searchmodule" class="tabs">
+					<ul class="tab-control">
+						<li><a href="#flight-search">客房预订</a></li>
+						<li><a href="#hotel-search">计划变更</a></li>
+						<li><a href="#travel-search">寻找我们</a></li>
+					</ul>
+					<div id="flight-search" class="tab-content">
+						<form action="#">
+							<div class="field">
+								<label for="flight-from">当前日期:</label>
+								<!--  <input type="text" id="flight-from" class="input-text" placeholder="您的位置" autocomplete="off" />  -->
+				
+								<input type="text"  id="flight-from" class="input-text" value="" style=" display:block" readonly="true">
+							</div>
+							<div class="field">
+								<label for="flight-to" >我们的位置:</label>
+								<input type="text" id="flight-to" class="input-text" placeholder="峡谷-英雄大酒店" autocomplete="off" />
+							</div>
+							<div class="field half">
+								<label for="flight-depart">入住时间:</label>
+								<input type="date" id="flight-depart"  placeholder="2012-10-01" autocomplete="off" />
+							</div>
+							<div class="field half even">
+								<label for="flight-return">离开时间:</label>
+								<input type="date" id="flight-return"  placeholder="2012-10-01" autocomplete="off" onchange="checkhouse()"/>
+							</div>
+							<div class="field half">
+								<label for="flight-class">住房类型:</label>
+								<select id="roomtype" onchange="selecthouse()">
+									<option value="0">所有类型</option>
+									<option value="1">单人间</option>
+									<option value="2">双人间</option>
+									<option value="3">小套房</option>
+									<option value="4">大套房</option>
+								</select>
+							</div>
+							<div class="field half even">
+<!--								<label for="flight-person">预定类型:</label>-->
+<!--								<select id="flight-person">-->
+<!--									<option>&#45;&#45;请选择&#45;&#45;</option>-->
+<!--									<option value="0">客房</option>-->
+<!--									<option value="1">会议厅</option>-->
+<!--									<option value="2">餐厅</option>-->
+<!--								</select>-->
+								<label >&nbsp;</label>
+<!--								<span onclick="checkhouse()"><input type="button" value="查询" style="background-color: red"></span>-->
+							</div>
+<!--							<button  onclick="book()">我要预定</button>-->
+							<input type="button" onclick="book()" value="预定">
+							<br class="clear" />
+						</form>
+					</div>
+					<!--flight search -->
+					
+					<div id="hotel-search" class="tab-content">
+						<form action="#">
+							<div class="field">
+								<label for="hotel-to">变更打算:</label>
+								<input type="text" id="hotel-to" class="input-text" placeholder="在这里输入您的计划" autocomplete="off" />
+							</div>
+							<div class="field half">
+								<label for="hotel-depart">入住:</label>
+								<input type="text" id="hotel-depart" class="input-text input-cal" placeholder="2012-10-01" autocomplete="off" />
+							</div>
+							<div class="field half even">
+								<label for="hotel-return">离开:</label>
+								<input type="text" id="hotel-return" class="input-text input-cal" placeholder="2012-10-01" autocomplete="off" />
+							</div>
+							<div class="field half">
+								<label for="hotel-class">更换类型:</label>
+								<input type="text" id="hotel-class" class="input-text" autocomplete="off" />
+							</div>
+							<div class="field half even">
+								<label for="hotel-room">变更人数:</label>
+								<select id="hotel-room">
+									<option>1</option>
+								</select>
+							</div>
+							<button type="submit" class="submit">搜索</button>
+							<br class="clear" />
+						</form>
+					</div>
+					<!--hotel search -->
+					
+					<div id="travel-search" class="tab-content">
+						<form action="#">
+							<div class="field">
+								<label for="travel-from">出发地:</label>
+								<input type="text" id="travel-from" class="input-text" placeholder="Origin" autocomplete="off" />
+							</div>
+							<div class="field">
+								<label for="travel-to">目的地:</label>
+								<input type="text" id="travel-to" class="input-text" placeholder="Destination" autocomplete="off" />
+							</div>
+							<div class="field half">
+								<label for="travel-depart">离开时间:</label>
+								<input type="text" id="travel-depart" class="input-text input-cal" placeholder="2012-10-01" autocomplete="off" />
+							</div>
+							<div class="field half even">
+								<label for="travel-return">返回时间:</label>
+								<input type="text" id="travel-return" class="input-text input-cal" placeholder="2012-10-01" autocomplete="off" />
+							</div>
+							<div class="field half">
+								<label for="travel-class">类型:</label>
+								<input type="text" id="travel-class" class="input-text" autocomplete="off" />
+							</div>
+							<div class="field half even">
+								<label for="travel-person">人数:</label>
+								<select id="travel-person">
+									<option>1</option>
+								</select>
+							</div>
+							<button type="submit" class="submit">搜索</button>
+							<br class="clear" />
+						</form>
+					</div>
+
+				</div>
+			</div>
+
+			
+			
+			
+			<div class="hr"><hr /></div>
+			
+			
+			
+			<div class="hr">
+				<table style="border: red 1px solid;width: 900px;font-size: 20px; font-family: 微软雅黑">
+					<tr style="border: red 1px solid;height: 30px;" >
+						<td>类型</td>
+						<td>描述</td>
+						<td>查看详情</td>
+						<td>价格</td>
+						<td>房间数量</td>
+						<td>预定</td>
+					</tr>
+					<tr style="border: red 1px solid;height: 60px" id="singlehouse">
+						<td><img src="images/tu2.jpg" style="height: 80px;"></td>
+						<td>单人间</td>
+						<td><input type="button" value="查看"></td>
+						<td>150元</td>
+						<td>剩余<span id="singlenumber">*</span>间</td>
+						<td><input type="button" value="-" onclick="reduce1()">
+							<span id="single">0</span>
+							<input type="button" value="+" onclick="add1()">
+						</td>
+					</tr>
+					<tr style="border: red 1px solid;height: 60px" id="doublehouse">
+						<td><img src="images/tu3.jpg" style="height: 80px;"></td>
+						<td>双人间</td>
+						<td><input type="button" value="查看"></td>
+						<td>200元</td>
+						<td>剩余<span id="doublenumber">*</span>间</td>
+						<td><input type="button" value="-" onclick="reduce2()">
+							<span id="double">0</span>
+							<input type="button" value="+" onclick="add2()">
+						</td>
+					</tr>
+					<tr style="border: red 1px solid;height: 60px" id="trihouse">
+						<td><img src="images/tu1.jpg" style="height: 80px;"></td>
+						<td>小套房</td>
+						<td><input type="button" value="查看"></td>
+						<td>500元</td>
+						<td>剩余<span id="trinumber">*</span>间</td>
+						<td><input type="button" value="-" onclick="reduce3()">
+							<span id="tri">0</span>
+							<input type="button" value="+" onclick="add3()">
+						</td>
+					</tr>
+					<tr style="border: red 1px solid;height: 60px" id="fourhouse">
+						<td><img src="images/tu1.jpg" style="height: 80px;"></td>
+						<td>大套房</td>
+						<td><input type="button" value="查看"></td>
+						<td>500元</td>
+						<td>剩余<span id="fournumber">*</span>间</td>
+						<td><input type="button" value="-" onclick="reduce4()">
+							<span id="four">0</span>
+							<input type="button" value="+" onclick="add4()">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5" style="text-align: center">
+							<div align="center" style="margin: 50 auto">
+								<button onclick="openwindow()">填写个人信息</button>
+							</div>
+							<!-- 弹窗隐藏区域 -->
+							<div id="myModal" class="modal">
+								<!-- 弹窗内容 -->
+								<div class="modal-content">
+									<div class="modal-header">
+										<span class="close">&times;</span>
+										<h2>填写个人信息</h2>
+									</div>
+									<div class="modal-body">
+										<p>请填写真实有效的个人信息</p>
+										姓名： <input type="text" id="name" value="张三"><br>
+										电话： <input type="text" id="tel" value="17808323143"><br>
+										性别： <select id="sex2">
+												<option value="男">男</option>
+												<option value="女">女</option>
+												</select>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										&nbsp;&nbsp;&nbsp;&nbsp;
+										<br>
+										留言：<input type="text" id="message11" placeholder="请填写留言"><br>
+										身份证号： <input type="text" id="idcard" value="513826199008101513">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+									</div>
+									<div class="modal-footer">
+										<button class="ok">确定</button>&nbsp;<button class="no">取消</button>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			
+
+			
+			<br class="clear" />
+				
+			<br class="clear" />
+		</section>
+	
+	</div>
+	
+</div>
+<script>
+	function search1() {
+		var question=$("#search").val();
+		var url="https://www.baidu.com/s?wd="+question;
+		open(url)
+	}
+
+	function checkhouse() {
+		var roomtype=$("#roomtype").val()
+		var livetime = new Date($("#flight-depart").val().replace(/-/g, '/'));
+		var leavetime = new Date($("#flight-return").val().replace(/-/g, '/'));
+		var oneday=60*60*24*1000
+		var days=(leavetime-livetime)/oneday
+		if (days<=0){
+			alert("请填写正确的日期格式~")
+		}
+
+
+		else {
+			$.ajax({
+				url:"../order/findHouseByDays",
+				type:"post",
+				data:{
+					"roomtype":roomtype,
+					"livetime":livetime,
+					"leavetime":leavetime,
+					"days":days
+				},
+				success:function(data){
+					alert(data[1])
+					$("#singlenumber").html(data[1])
+					$("#doublenumber").html(data[2])
+					$("#trinumber").html(data[3])
+					$("#fournumber").html(data[4])
+				}
+
+			})
+		}
+	}
+
+	function book() {
+		var housenumber=[];   //数组下标对应房间类型，数组值代表预定房间数量
+		for (var i = 0; i <= 4; i++) {
+			housenumber[i]=0;
+		}
+		housenumber[1]=parseInt($("#single").html())
+		housenumber[2]=parseInt($("#double").html())
+		housenumber[3]=parseInt($("#tri").html())
+		housenumber[4]=parseInt($("#four").html())
+		var hn=JSON.stringify(housenumber)   //前端数组转化为字符串
+
+		var name=$("#name").val()
+		var tel=$("#tel").val()
+		var sex=$("#sex2").val()
+		var message=$("#message11").val()
+		var idcard=$("#idcard").val()
+
+		$.ajax({
+			url: "../order/createorder",
+			type:"post",
+			data : {
+				"hn":hn,
+				"name":name,
+				"tel":tel,
+				"sex":sex,
+				"message":message,
+				"idcard":idcard
+
+			},
+			success: function(result) {
+				if(result=="订单生产"){
+					location.href="order.html"
+				}else {
+					alert(result)
+				}
+			}
+		});
+	}
+
+	function selecthouse() {
+		if($("#roomtype").val()==1){
+			$("#singlehouse").show()
+			$("#doublehouse").hide()
+			$("#trihouse").hide()
+			$("#fourhouse").hide()
+		}else if ($("#roomtype").val()==2){
+			$("#doublehouse").show()
+			$("#singlehouse").hide()
+			$("#trihouse").hide()
+			$("#fourhouse").hide()
+		} else if ($("#roomtype").val()==3){
+			$("#trihouse").show()
+			$("#singlehouse").hide()
+			$("#doublehouse").hide()
+			$("#fourhouse").hide()
+		}else if ($("#roomtype").val()==4){
+			$("#singlehouse").hide()
+			$("#trihouse").hide()
+			$("#doublehouse").hide()
+			$("#fourhouse").show()
+		}else{
+			$("#singlehouse").show()
+			$("#trihouse").show()
+			$("#doublehouse").show()
+			$("#fourhouse").show()
+		}
+
+
+	}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=0.95, user-scalable=no" />
+<title>HERO酒店 - 用户中心</title>
+<meta name="description" content="说明" />
+<meta name="keywords" content="关键字" />
+ 	<link rel="stylesheet" href="css/style.css" />
+ 	
+	<link rel="stylesheet" href="css/user.css" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/user_center.js"></script>
+	<style type="text/css">
+		ul li{
+		 list-style: none;
+		 }
+	</style>
+</head>
+
+<body class="blog">
+	<div id="slider-wrap">
+	    <div class="camera_overlayer"></div>
+	</div>
+	<!--头-->
+<div id="wrapper">
+	<div id="container">
+        <header id="header">
+            <div id="logo">
+                <a href="index.html"><strong>HERO</strong>酒店</a>
+            </div>
+            <div id="searchbox">
+                <form action="#">
+                    <input type="text" id="search" placeholder="Search" />
+                    <button type="submit"></button>
+                </form>
+            </div>
+            <div id="navigation">
+                <ul id="nav">
+                	<li class="selected"><a href="user_center.html">个人信息</a></li>
+                    <li ><a href="bookroom.html">在线预定</a></li>
+                    <li><a href="browse.html">酒店一览</a>
+                    </li>
+                    <li><a href="../gd.html">酒店位置</a></li>
+                    <li><a href="../share.html">留言</a></li>
+                </ul>
+            </div>
+        </header>
+	<!--导航-->
+	<!--会员中心-->
+	<div class="member_center_wrap">
+		<div class="member_center" style="position: relative;background-color:rgba(255, 251, 240,0);">
+			<div class="member_center_l">
+				<div class="body_center_main_tree">
+					<ul>
+						<li><dl>
+								<dt>
+									<a href="#" class="cur">信息分类</a>
+								</dt>
+							</dl></li>
+						<li><dl>
+								<dt>
+									<a href="#">信息管理</a>
+								</dt>
+								<dd>
+									<a href="javascript:void(0);" onclick="showInfo()">个人资料</a>
+									<a href="javascript:void(0);" onclick="showPwd()">修改密码</a>
+								</dd>
+							</dl></li>
+						<li><dl>
+								<dt>
+									<a href="#">订单管理</a>
+								</dt>
+								<dd>
+									<a href="javascript:void(0);" onclick="showOrders()">房间订单</a>
+								</dd>
+							</dl></li>
+						<li><dl>
+								<dt>
+									<a href="#">会员卡管理</a>
+								</dt>
+								<dd>
+									<a href="javascript:void(0);" onclick="showVips()">会员权益</a> 
+								</dd>
+							</dl></li>
+						<li><dl>
+								<dt>
+									<a href="#">瑞琪社区</a>
+								</dt>
+								<dd>
+									<a href="#">会员公告</a> <a href="#">会员分享</a> <a href="#">会员建议</a> <a
+										href="#">会员投诉</a> <a href="#">公司手册</a> <a href="#">个人手册</a>
+								</dd>
+							</dl></li>
+					</ul>
+				</div>
+			</div>
+			<div class="member_center_r" id="textbody" style="width:800px">
+			<div class="textbox" id="info">
+					<table class="table">
+					<caption><h2>个人资料</h2></caption>
+						<tr>
+							<th>账户名</th>
+							<td id="account">22</td>
+						</tr>
+						<tr>
+							<th>会员等级</th>
+							<td id="vip">44</td>
+						</tr>
+						<tr>
+							<th>消费金额</th>
+							<td id="money">66</td>
+						</tr>
+						<tr>
+							<th>手机号</th>
+							<td id="tel">66</td>
+						</tr>
+						<tr>
+							<th>姓名</th>
+							<td id="name">66</td>
+						</tr>
+						<tr>
+							<th>身份证号</th>
+							<td id="card">66</td>
+						</tr>
+						<tr>
+							<th>朋友信息</th>
+							<td>
+								<select id="option">
+									<option>朋友信息列</option>
+									
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th colspan="2" style="text-align:center">添加朋友个人信息</th>
+						</tr>
+						<tr>
+							<td>姓名</td>
+							<td><input type="text" id="uname"></td>
+						</tr>
+						<tr>
+							<td>性别</td>
+							<td>男<input type="radio" name="sex" checked="checked" value="男">
+							女<input type="radio" name="sex" value="女"></td>
+						</tr>
+						<tr>
+							<td>手机号</td>
+							<td><input type="text" id="utel"></td>
+						</tr>						
+						<tr>
+							<td>身份证号</td>
+							<td><input type="text" id="idcard"></td>
+						</tr>
+						<tr>
+							<td colspan="2"><button type="button" class="btn btn-default" onclick="addInfo()">添加</button></td>
+						</tr>																				
+					</table>
+				</div>
+				<div class="textbox" style="display:none" id="order">
+					<table class="table">
+						<tr>
+							<th>订单号</th>
+							<th>订单时间</th>
+							<th>总金额</th>
+							<th>支付方式</th>
+							<th>支付号</th>
+							<th>评论</th>
+							<th>退款</th>
+							
+						</tr>
+						<tbody id="orders"></tbody>
+					</table>
+				</div>
+				<div class="textbox" style="display:none" id="vip">
+					<table class="table">
+						<tr>
+							<th>会员等级</th>
+							<th>达成积分</th>
+							<th>享受折扣</th>
+						</tr>
+					<tbody id="vips">
+					</tbody>
+					</table>
+				</div>
+				<div class="textbox" style="display: none;"  id="pwd">
+					<table class="table">
+						<caption><h2>密码修改</h2></caption>
+						<tr>
+							<th>输出新密码</th>
+							<td><input type="password" id="password"></td>
+						</tr>
+						<tr>
+							<th>确认密码</th>
+							<td><input type="password" id="rpassword"></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<button type='button' class='btn btn-default' onclick="reset()">确认修改</button>
+							</td>
+						</tr>						
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					评论
+				</h4>
+			</div>
+			<div class="modal-body" id="modal-body" style="display: none;">
+			<input type="hidden" id="hid">
+				<textarea style="width:400px;" id="msg"></textarea>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" class="btn btn-default" onclick='comment()' data-dismiss="modal">
+					提交
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+	<!---尾部-->
+		<div class="footer">
+			<div class="link">
+				<div class="copyright">Copyright &copy; 2014 黄山 &middot; 醉温泉
+					All Rights Reserved. 版权所有&nbsp;&nbsp;&nbsp;&nbsp;皖ICP备11009137号</div>
+			</div>
+	
+		</div>
+	</div>
+</div>
+</body>
+</html>

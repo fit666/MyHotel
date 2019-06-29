@@ -1,0 +1,466 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=0.95, user-scalable=no" />
+<title>黄山醉温泉</title>
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/style.css" />
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/landi.js"></script>
+	<style type="text/css">
+		ul li{
+		 list-style: none;
+		 }
+	</style>
+</head>
+
+
+<body class="blog">
+<div id="slider-wrap">
+    <div class="camera_overlayer"></div>
+</div>
+<div id="wrapper">
+    <div id="container">
+<!--HEADER-->
+ <header id="header">
+            <div id="logo">
+                <a href="index.html"><strong>HERO</strong>酒店</a>
+            </div>
+            <div id="searchbox">
+                <form action="#">
+                    <input type="text" id="search" placeholder="Search" />
+                    <button type="submit"></button>
+                </form>
+            </div>
+            <div id="navigation">
+                <ul id="nav">
+                    <li ><a href="../login.html" style="display: none;" id="loginbox">登录/注册</a></li>
+                    <li ><a href="user_center.html" style="display: none;" id="infobox">个人信息</a></li>
+                    <li class="selected"><a href="bookroom.html">在线预定</a></li>
+                    <li ><a href="browse.html">酒店一览</a></li>
+                    <li><a href="../gd.html">酒店位置</a></li>
+                    <li><a href="../share.html">留言</a></li>
+                </ul>
+            </div>
+        </header>
+<!--CONTENT-->
+<div class="content" style="position: relative;">
+	<div class="mar1000 clearfix">
+    	<div class="path"><label>酒店预订</label></div>
+        
+        
+        <!--流程-->
+        <div class="list_title">
+            <ul>
+            <li><label class="ok">入住日期</label></li>
+            <li class="ui1"><img src="images/yd2.gif" /></li>
+            <li><label class="ok">选择客房</label></li>
+            <li class="ui1"><img src="images/yd2.gif" /></li>
+            <li><label class="ok">在线预订</label></li>
+            <li class="ui1"><img src="images/yd2.gif" /></li>
+            <li><label class="ok">在线支付</label></li>
+            <li class="ui1"><img src="images/yd2.gif" /></li>
+            <li><label class="hott">完成订单</label></li>
+            </ul>
+            <div class="clears"></div>
+        </div>
+    
+    
+        
+        <!--内容-->
+		<div class="dd_forms">
+	
+		<h2>订单信息</h2>
+		<div class="ddxx"><label>订单状态：有效</label><label>订单号：<strong id="ordernumber">01401113230234124123S</strong></label><label><a href="" class="print">打印订单</a></label><label>支付状态：<b style="color: red" id="ispay">未支付</b></label><label><a href="#" class="btn31">马上支付</a></label></div>
+		<div class="ddxx" style="border-bottom:0;"><label>订单已经生效，如需事后支付或取消订单，请在订单保留时效前在【订单管理】中进行。</label><label><a href="#" class="btn31">订单管理</a></label></div>
+		
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table2" style="margin-bottom:10px;">
+  <tr class="tr1">
+    <td>房型</td>
+    <td>入住时间</td>
+    <td>离店时间</td>
+    <td>预订间数</td>
+    <td>价格名称</td>
+    </tr>
+          <tr class="tr4" id="tr1">
+            <td><a href="#">单人间</a></td>
+            <td id="livet1">2014-01-16</td>
+            <td id="leave1">2014-01-17</td>
+            <td id="onen">0</td>
+            <td><span id="price1"></span>元</td>
+            </tr>
+            <tr class="tr4" id="tr2">
+                <td><a href="#">双人间</a></td>
+                <td id="livet2">2014-01-16</td>
+                <td id="leavet2">2014-01-17</td>
+                <td id="twon">0</td>
+                <td id><span id="price2"></span>元</td>
+            </tr>
+            <tr class="tr4" id="tr3">
+                <td><a href="#">大套房</a></td>
+                <td id="livet3">2014-01-16</td>
+                <td id="leavet3">2014-01-17</td>
+                <td id="threen">0</td>
+                <td><span id="price3"></span>元</td>
+            </tr>
+            <tr class="tr4" id="tr4">
+                <td><a href="#">小套房</a></td>
+                <td id="livet4">2014-01-16</td>
+                <td id="leavet4">2014-01-17</td>
+                <td id="fourn">0</td>
+                <td><span id="price4"></span>元</td>
+            </tr>
+</table>
+		
+		<div class="orderForm_table1" style="margin-top:20px;">
+<table width="100%" class="table2" border="0" cellspacing="0" cellpadding="0">
+<!--  <tr class="tr1">-->
+<!--    <td width="14%">星期日</td>-->
+<!--    <td width="14%">星期一</td>-->
+<!--    <td width="14%">星期二</td>-->
+<!--    <td width="14%">星期三</td>-->
+<!--    <td width="14%">星期四</td>-->
+<!--    <td width="14%">星期五</td>-->
+<!--    <td width="14%">星期六</td>-->
+<!--  </tr>-->
+<!--  <tr class="tr2">-->
+<!--    <td>&nbsp;</td>-->
+<!--    <td>￥257.1</td>-->
+<!--    <td>&nbsp;</td>-->
+<!--    <td>&nbsp;</td>-->
+<!--    <td>&nbsp;</td>-->
+<!--    <td>&nbsp;</td>-->
+<!--    <td>&nbsp;</td>-->
+<!--  </tr>-->
+  <tr class="tr3">
+    <td colspan="7">您选择了<i class="i1" id="allhouse">1</i>间，总金额：<i class="i2" id="allpay">258.00</i>元， 房费优惠后价格 <i class="i3" id="discountpay">258.00</i>元</td>
+  </tr>
+</table>
+
+</div>
+	
+	<div class="gr_btn1">
+
+
+        <a onclick="deleteorder()">删除订单</a>
+
+
+        <a >
+            <span onclick="openwindow()">修改订单</span>
+            <!-- 弹窗隐藏区域 -->
+            <div id="myModal" class="modal">
+                <!-- 弹窗内容 -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+                        <h2>填写个人信息</h2>
+                    </div>
+                    <div class="modal-body">
+                       <input type="text"><br>
+                       <input type="text"><br>
+                       <input type="text"><br>
+                       <input type="text"><br>
+                       <input type="text"><br>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="ok">确定</button>&nbsp;<button class="no">取消</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </a>
+
+
+
+
+        <a onclick="pay()">立即支付</a>
+
+
+    </div>
+
+
+
+
+	
+	</div>
+    </div>
+</div>
+<!--CONTENT-->
+
+
+<!--FOOTER-->
+<div class="bottom">
+<a href="">网站首页</a>|
+<a href="">温泉预定</a>|
+<a href="">酒店预定</a>|
+<a href="">醉悦旅居</a>|
+<a href="">养生餐饮</a>|
+<a href="">会议中心</a>|
+<a href="">促销活动</a>|
+<a href="">企业文化</a>
+</div>
+<div class="footer">
+地址：黄山市屯溪区花山路新徽天地醉温泉国际度假城&nbsp;&nbsp;&nbsp;&nbsp;邮编:236010<br/>
+电话：0559-2536999&nbsp;&nbsp;2568666&nbsp;&nbsp;&nbsp;&nbsp;免费预订电话：400-0559-700<br/>
+Copyright &copy; 2003-2014  黄山 &middot; 醉温泉&nbsp;&nbsp;All rights reserved.&nbsp;&nbsp;皖ICP备11009137号
+</div>
+<!--FOOTER-->
+</div>
+</div>
+</body>
+<script>
+function pay(){
+		window.location.href="../pay/pay?ordernumber="+$("#ordernumber").html();
+		
+}
+    $(document).ready(function () {
+        $.ajax({
+            url:"../crud/showOrder",
+            type:"post",
+            success:function(data){
+                console.log(data)
+                $("#ordernumber").html(data.ordernumber)
+                if(data.flag==2){
+                    $("#ispay").html("未支付")
+                }else if(data.flag==1){
+                    $("#ispay").html("已支付")
+                }
+                var orderitems=data.oderItems
+
+                var houseT_one=0;
+                var houseT_two=0;
+                var houseT_three=0;
+                var houseT_four=0;
+                var livetime1="";
+                var livetime2="";
+                var livetime3="";
+                var livetime4="";
+                var leavetime1="";
+                var leavetime2="";
+                var leavetime3="";
+                var leavetime4="";
+
+                //各类型价格
+                var priceT1=0;
+                var priceT2=0;
+                var priceT3=0;
+                var priceT4=0;
+                for (var i = 0; i <orderitems.length; i++) {
+                    if(orderitems[i].typeid==1){
+                        houseT_one++;
+                        livetime1=orderitems[i].starttime;
+                        leavetime1=orderitems[i].endtime;
+                        priceT1+=orderitems[i].price;
+                    }
+                    if(orderitems[i].typeid==2){
+                        houseT_two++;
+                        livetime2=orderitems[i].starttime;
+                        leavetime2=orderitems[i].endtime;
+                        priceT2+=orderitems[i].price;
+                    }
+                    if(orderitems[i].typeid==3){
+                        houseT_three++;
+                        livetime3=orderitems[i].starttime;
+                        leavetime3=orderitems[i].endtime;
+                        priceT3+=orderitems[i].price;
+                    }
+                    if(orderitems[i].typeid==4){
+                        houseT_four++;
+                        livetime4=orderitems[i].starttime;
+                        leavetime4=orderitems[i].endtime;
+                        priceT4+=orderitems[i].price;
+                    }
+                }
+                //房间数为0的就不显示
+                if(houseT_one==0){
+                    $("#tr1").hide()
+                }
+                if(houseT_two==0){
+                    $("#tr2").hide()
+                }
+                if(houseT_three==0){
+                    $("#tr3").hide()
+                }
+                if(houseT_four==0){
+                    $("#tr4").hide()
+                }
+
+
+                $("#onen").html(houseT_one);
+                $("#twon").html(houseT_two);
+                $("#threen").html(houseT_three);
+                $("#four").html(houseT_four);
+                $("#livet1").html(livetime1);
+                $("#leave1").html(leavetime1);
+                $("#livet2").html(livetime2);
+                $("#leavet2").html(leavetime2);
+                $("#livet3").html(livetime3);
+                $("#leavet3").html(leavetime3);
+                $("#livet4").html(livetime4);
+                $("#leavet4").html(leavetime4);
+
+
+                $("#price1").html(priceT1);
+                $("#price2").html(priceT2);
+                $("#price3").html(priceT3);
+                $("#price4").html(priceT4);
+
+                //总共的房间数
+                $("#allhouse").html(houseT_one+houseT_two+houseT_three+houseT_four)
+                //总共的价格
+                $("#allpay").html(priceT1+priceT2+priceT3+priceT4)
+                //折后的价格,假装有个8折
+                var discount=0.8;
+                var sumprice2=(priceT1+priceT2+priceT3+priceT4)*0.8
+                var sumprice=sumprice2.toFixed(2)
+                $("#discountpay").html(sumprice)
+            }
+        })
+    })
+
+
+
+
+    window.onload = function() {
+        var nowDate = new Date();
+        var str = nowDate.getFullYear() + "-" + (nowDate.getMonth() + 1) + "-"
+            + nowDate.getDate() + "       " + nowDate.getHours() + ":"
+            + nowDate.getMinutes();
+        document.getElementById("flight-from").value = str;
+    }
+
+
+
+
+    function openwindow(){
+        //获取弹窗得div
+        var modal = document.getElementById('myModal');
+        // 获取 <span> 元素，用于关闭弹窗 （X）
+        var span = document.getElementsByClassName("close")[0];
+        //获取弹窗中得确定按钮
+        var ok=document.getElementsByClassName("ok")[0];
+        //获取弹窗中得取消按钮
+        var no=document.getElementsByClassName("no")[0];
+        //窗体弹出
+        modal.style.display = "block";
+        //点击窗体ok
+        ok.onclick=function(){
+            //执行弹出窗体得确定后得操作
+            alert("执行确定按钮点击得操作");
+            //关闭窗口
+            modal.style.display = "none";
+        }
+        //点击窗体取消按钮
+        no.onclick=function(){
+            //直接关闭窗口
+            modal.style.display = "none";
+        }
+        // 点击 <span> (x), 关闭弹窗
+        span.onclick = function() {
+            //直接关闭窗口
+            modal.style.display = "none";
+        }
+        // 在用户点击其他地方时，关闭弹窗
+        window.onclick = function(event) {
+            //点击窗口外内容，关闭窗口
+            if (event.target == modal) modal.style.display = "none";
+        }
+    }
+
+    function deleteorder() {
+        alert("删除订单")
+    }
+
+    function payorder() {
+        alert("支付")
+    }
+
+</script>
+<style>
+    /* 弹窗 (background) */
+    .modal {
+        display: none; /* 默认隐藏 */
+        /*生成绝对定位的元素，相对于浏览器窗口进行定位。*/
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        /*设置弹窗位置*/
+        padding-top: 50px;
+        padding-bottom: 300px;
+        /*浮在全屏上*/
+        width: 100%;
+        height:  100%;
+        /*overflow：auto；如果内容被修剪，则浏览器会显示滚动条，以便查看其余内容。*/
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+        text-align: center;
+    }
+
+    /* 弹窗内容 */
+    .modal-content {
+        /*position: relative;*/
+        /*弹窗背景色设置*/
+        background-color: #fefefe;
+        margin: auto;
+        padding: 200px auto;
+        width: 600px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+
+    /* 添加动画 */
+    @-webkit-keyframes animatetop {
+        from {top:-200px; opacity:0}
+        to {top:0; opacity:1}
+    }
+
+    @keyframes animatetop {
+        from {top:-200px; opacity:0}
+        to {top:0; opacity:1}
+    }
+
+    /* 关闭按钮 */
+    .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .close:hover, .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-header {
+        display: block;
+        line-height: 30px;
+        padding: 2px 10px;
+        background-color: blue;
+        color: white;
+        text-align: left;
+    }
+
+    .modal-body {
+        padding: 2px 16px;
+        font-size: 18px;
+        height: 500px;
+    }
+
+    .modal-footer {
+        display: block;
+        line-height: 30px;
+        padding: 2px 10px;
+        background-color: blue;
+        color: white;
+    }
+</style>
+</html>

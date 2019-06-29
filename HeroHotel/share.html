@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=0.95, user-scalable=no" />
+<title>herohotel</title>
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/layui.css"  media="all">
+</head>
+
+<body>
+<!--HEADER-->
+<%@include file="head.jsp" %>
+<!--HEADER-->
+
+
+<!--BIG PIC-->
+<div class="banners">
+&nbsp;
+</div>
+<!--BIG PIC-->
+
+
+
+<!--CONTENT-->
+<div class="content">
+	<div class="mar1000 clearfix">
+    	<div class="path"><label>客户留言</label><span>当前位置：首页 &gt; 客户分享</span></div>
+        
+      <div  style="background:#fff; border:1px solid #eee; padding:30px;">
+       	
+		<!-- 客户留言
+		<div class="guestbook">
+			<div class="guestbook_nr"><textarea placeholder="请留言..." id="text" cols="" rows="" class="textarea1"></textarea></div>
+			
+			<div class="guestbook_form"><span><label class="t4"><input name="" type="button" value="分享留言" class="btn4" onclick="addComment()" /></label></span>
+			<label  >昵称</label>
+			<label class="t2"><input id="name" type="text" class="input21"/></label>
+			</div>
+		
+		</div>
+		<div class="clears"></div> -->
+		
+		
+		<!--客户留言列表-->
+		<div style="position:relative ; height:400px; overflow:auto" id="msg" class="guestbook_list">
+			<h3>全部留言</h3>
+			<!-- 留言列表 -->
+		<!-- <div  class="guestbook">
+			<div class="guestbook_nr">
+			<div style="border-bottom:1px #ddd solid" id="id" >留言编号：</div>
+			<div id="message" >1v</div>
+			</div>
+			<div class="guestbook_form">
+			<label id="name"  >昵称:   </label>
+			<span  style="text-align: right;" id="time" >评论时间:</span>
+			</div>
+		
+		</div>	 -->
+			
+			
+			
+		
+   	  </div>
+      <div class="clears"></div>
+      
+   	 <div class="page">
+			<div class="page-item first" onclick="firstpage()" >首页</div>
+			<div class="page-item prev" onclick="backpage()" >上一页</div>
+			<div class="page-item"><span id="currentpage">1</span>/<span id="totalpage">1</span></div>
+			<div class="page-item next" onclick="nextpage()" >下一页</div>
+			<div class="page-item last" onclick="lastpage()" >末页</div>
+		</div>
+   	</div>
+    </div>
+   
+</div>
+<!--CONTENT-->
+
+<script type="text/javascript" src="js/share.js"></script>
+
+</body>
+</html>

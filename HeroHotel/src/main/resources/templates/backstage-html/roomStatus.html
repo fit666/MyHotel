@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript" src="/backstage/js/public/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/backstage/js/public/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/backstage/css/bootstrap.min.css" />
+<link>
+<style>
+#rooms {
+	/* border: #000000 1px solid; */
+	height: 400px;
+}
+
+#rooms div {
+	border: #000000 1px solid;
+	width: 10%;
+	height: 90px;
+	margin-left: 2%;
+	margin-top: 2%;
+	float: left;
+	font-size: 24px;
+	text-align: center;
+	Border-radius: 18px;
+}
+
+.room_0 {
+	background-color: #00ff99;
+}
+
+.room_1 {
+	background-color: red;
+}
+
+.room_2 {
+	background-color: #006699;
+}
+
+.room_3 {
+	background-color: #66cc99;
+}
+
+#title {
+	text-align: center;
+}
+
+#select {
+	text-align: center;
+	width: 100%;
+}
+</style>
+
+
+
+
+</head>
+<body>
+	<h1 id="title">房间状态</h1>
+	<div id="select">
+		<div class="btn-group" data-toggle="buttons">
+			<label class="btn btn-primary" id="all"> <input type="radio"
+				name="options" id="option1"> 显示所有
+			</label> <label class="btn btn-primary" id="ok"> <input type="radio"
+				name="options" id="option2" onclick="okRooms()"> 显示可住
+			</label> <!-- <label class="btn btn-primary" id="no"> <input type="radio"
+				name="options" id="option3"> 显示已住
+			</label> -->
+			<label class="btn btn-primary" id="zang">
+			<input type="radio" name="options" id="option4"> 显示脏房
+			</label>
+			<label class="btn btn-primary" id="repair">
+				<input type="radio" name="options" id="option5"> 显示维修
+			</label>
+
+		</div>
+
+
+	</div>
+	<div style="text-align: center; margin-top: 10px;">
+		<form action="../room/addRepair" method="get">
+			<input type="text" name="houseid">
+			<input type="submit" value="添加维修房间">
+		</form>
+	</div>
+	<hr />
+
+
+	<div>
+		<div id="rooms"></div>
+	</div>
+
+
+
+	<script type="text/javascript" th:inline="javascript">
+			function findRooms(){
+				var rooms = [[${rooms}]];
+				for(var i = 0 ; i < rooms.length; i++ ){
+					if(rooms[i].flag == 1){
+						var div = $("<div id=room_"+rooms[i].id+" class='room_"+rooms[i].flag+"'></div>").html(rooms[i].id+"<br/>可供入住");
+					}
+					else if(rooms[i].flag == 2){
+						var div = $("<div id=room_"+rooms[i].id+" class='room_"+rooms[i].flag+"'></div>").html(rooms[i].id+"<br/><a href='../room/updataroom?id="+rooms[i].id+"'>需要打扫</a>");
+					}
+					else if(rooms[i].flag == 3){
+						var div = $("<div id=room_"+rooms[i].id+" class='room_"+rooms[i].flag+"'></div>").html(rooms[i].id+"<br/>需要维修");
+					}
+					
+					$("#rooms").append(div); 
+				}
+			}
+			findRooms()
+			
+			 $("#all").click(function(){
+				 location.href ="../room/findRoomAll"
+			   })
+			  
+			 $("#ok").click(function(){
+				 location.href ="../room/findOkRooms"
+			   })
+			   
+			  $("#zang").click(function(){
+				 location.href ="../room/findZangRooms"
+			   })
+				$("#repair").click(function(){
+				 location.href ="../room/findAepairRooms"
+			   })
+	
+			
+			
+</script>
+
+</body>
+</html>

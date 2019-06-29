@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<style>
+#all {
+	text-align: center;
+	width: 100%;
+	margin: 0 auto
+}
+
+#head {
+	border-bottom: 1px black solid;
+	padding-bottom: 10px;
+}
+
+#chart {
+	width: 100%;
+	height: 350px;
+	border: 1px solid black;
+}
+</style>
+
+</head>
+<body>
+
+	<div id="all">
+		<div id="title">
+			<h1>财务查询</h1>
+		</div>
+		<div id="head">
+
+			<a href="../chart/findMoneyDay"><button type="button"
+					class="btn btn-success">日</button></a>
+			<button type="button" class="btn btn-success">月</button>
+
+
+			<br> <br>
+			<form action="../chart/findMoney" method="get">
+				<label for="name">开始时间</label> <input type="date" name="startTime">
+				<label for="name">结束时间</label> <input type="date" name="endTime">
+				<input type="submit" value="查询">
+			</form>
+
+		</div>
+
+		<div id="chart">这是统计图</div>
+
+
+	</div>
+
+	<script type="text/javascript" th:inline="javascript">
+	/* dayOutMoney":null,"dayInMoney":357.00,"day":"2019-06-22"} */
+		var map = [[${map}]];
+		alert(JSON.stringify(map));
+	
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('chart'));
+		 
+	
+		
+		option = {
+			title : {
+				text : '英雄酒店收支查询',
+				/* subtext : '纯属虚构' */
+			},
+			tooltip : {
+				trigger : 'axis'
+			},
+			legend : {
+				data : [ '收入', '支出' ]
+			},
+			toolbox : {
+				show : true,
+				feature : {
+					dataView : {
+						show : true,
+						readOnly : false
+					},
+					magicType : {
+						show : true,
+						type : [ 'line', 'bar' ]
+					},
+					restore : {
+						show : true
+					},
+					saveAsImage : {
+						show : true
+					}
+				}
+			},
+			calculable : true,
+			xAxis : [ {
+				type : 'category',
+				data : []
+			} ],
+			yAxis : [ {
+				type : 'value'
+			} ],
+			series : [
+					{
+						name : '收入',
+						type : 'bar',
+						data : [],
+						markPoint : {
+							data : [ {
+								type : 'max',
+								name : '最大值'
+							}, {
+								type : 'min',
+								name : '最小值'
+							} ]
+						},
+						markLine : {
+							data : [ {
+								type : 'average',
+								name : '平均值'
+							} ]
+						}
+					},
+					{
+						name : '支出',
+						type : 'bar',
+						data : [],
+						/* markPoint : {
+							data : [ {
+								name : '年最高',
+								value : 182.2,
+								xAxis : 7,
+								yAxis : 183
+							}, {
+								name : '年最低',
+								value : 2.3,
+								xAxis : 11,
+								yAxis : 3
+							} ]
+						}, */
+						markLine : {
+							data : [ {
+								type : 'average',
+								name : '平均值'
+							} ]
+						}
+					} ]
+		};
+
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+	</script>
+</body>
+</html>

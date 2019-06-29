@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/backstage/css/findorder.css" rel="stylesheet" type="text/css" />
+<link href="/backstage/css/main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/backstage/js/jquery.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+/* $(document).ready(function(){
+	$.ajax({
+		url : "/order/findallorder",
+		success : function(data) {
+			alert(1111);
+			
+		}
+	});
+}); */
+function changed(){
+	 var send =$("#change").val();
+	 var reg= /^1[3456789]\d{0,9}$/;
+	 if(!(reg.test(send))){
+		 $("#change").attr("name","uname");
+	 } else {
+		 $("#change").attr("name","tel");
+	 }
+}
+</script>
+</head>
+<body>
+<form action="/order/findorder" method="post">
+查询:<input type="text" name="uname" id="change"/>
+
+<input type="submit" onclick="changed()" value="查询">
+</form>
+	<div class="main-style">
+		<div class="right-style">
+			<div
+				style="width: 90%; text-align: center; height: 400px; margin: 70px auto; background-color: #333; opacity: 0.8; color: #fff; padding-top: 30px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);">
+				<table style="width: 100%; margin: 20px auto" border="1px">
+					<tr>
+						<th hidden="hidden">借阅记录id</th>
+						<th>姓名</th>
+						<th>电话</th>
+						<th>入住天数</th>
+						<th>入住时间</th>
+						<th>离开时间</th>
+						<th>房间类型</th>
+						<th>房间号</th>
+						<th>押金</th>
+						<th>留言</th>
+						<th>订单编号</th>
+						<th>取消订单</th>
+						<th>修改订单</th>
+						<th>退房</th>
+						
+					</tr>
+					<span th:each="info,status:${infos}">
+					<span th:each="order,status:${info.orders}">
+					<tr th:each="orderitem,status:${order.oderItems}">
+						<td th:text="${info.uname}"></td>
+						<td th:text="${info.tel}"></td>
+						<td th:text="${orderitem.day}"></td>
+						<td th:text="${#dates.format(orderitem.starttime, 'yyyy-MM-dd')}"></td>
+						<td th:text="${#dates.format(orderitem.endtime, 'yyyy-MM-dd')}"></td>
+						<td th:if="${orderitem.typeid==1}">单人间</td>
+						<td th:if="${orderitem.typeid==2}">标间</td>
+						<td th:if="${orderitem.typeid==3}">家庭房</td>
+						<td th:if="${orderitem.typeid==4}">套房</td>
+						<td th:text="${orderitem.houseid}"></td>
+						<td th:text="${order.deposit}"></td>
+						<td th:text="${order.message}"></td>
+						<td th:text="${order.ordernumber}"></td>
+						<td >
+							<a th:href="@{/order/canceOrder(id=${orderitem.id},houseid=${orderitem.houseid})}">取消订单</a>
+						</td>
+						<td >							
+							<a th:href="@{/order/findupdate(id=${orderitem.id})}">修改</a>
+						</td>
+						<td >
+							<a th:href="@{/order/canceOrder(id=${orderitem.id},houseid=${orderitem.houseid})}">退房</a>
+						</td>
+					</tr>
+					</span>
+					</span>
+				</table>
+				
+			</div>
+		
+		</div>
+
+	</div>
+	<div class="bottom-style"></div>
+</body>
+</html>

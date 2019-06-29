@@ -1,0 +1,74 @@
+/* #center{
+	width: 1300px;
+	height: 600px;
+}
+
+#left{
+	width: 600px;
+	height: 400px;
+	float:left;
+}
+
+#right{
+	width: 600px;
+	height: 400px;
+	float:right;
+}
+
+#down{
+	width: 1300px;
+	height: 200px;
+	float:left;
+}
+#zt{
+		font-family: "新宋体";
+	font-weight: 800;
+	font-size: 30px;
+	margin-left: 187px;
+	text-shadow: 5px 5px 5px #808080;
+}
+
+#shuru{
+	width:600px;
+	height:60px;
+}
+#but{
+	width:605px;
+	height:60px;
+	font-size: 30px;
+	font-family: tunga;
+	background-color:#808080;
+} */
+#fir {
+	font-size: 20px;
+	color: #400040;
+	font-fimaly: "微软雅黑"; line-height : 30px;
+	background: #c0c0c0;
+	text-indent: 1em;
+	width: 300px;
+	background:  96px 5px no-repeat;
+	line-height: 30px
+}
+
+#fi {
+	font-size: 12px;
+	line-height: 28px;
+	color: #1a66b3;
+	font-size: 12px
+}
+
+#fi:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+#sec {
+	font-size: 12px;
+	line-height: 28px;
+	color: #1a66b3;
+}
+
+#sec:hover {
+	color: black;
+	text-decoration: underline;
+}

@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=0.95, user-scalable=no" />
+<title>新用户注册</title>
+<meta name="description" content="说明" />
+<meta name="keywords" content="关键字" />
+<link rel="stylesheet" href="css/login.css" type="text/css" />
+<link rel="stylesheet" href="shuaixinjie/css/style.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+	<style type="text/css">
+		ul li{
+		 list-style: none;
+		 }
+	</style>
+</head>
+
+<body class="infor">
+<div id="slider-wrap">
+	    <div class="camera_overlayer"></div>
+	</div>
+	<!--HEADER-->
+	<div id="wrapper">
+	<div id="container">
+        <header id="header">
+                    <div id="logo">
+                <a href="index.html"><strong>HERO</strong>酒店</a>
+            </div>
+            <div id="searchbox">
+                <form action="#">
+                    <input type="text" id="search" placeholder="Search" />
+                    <button type="submit"></button>
+                </form>
+            </div>
+            <div id="navigation">
+                <ul id="nav">
+                	<li class="selected"><a href="../login.html"  id="loginbox">登录/注册</a></li>
+                    <li ><a href="shuaixinjie/bookroom.html">在线预定</a></li>
+                    <li><a href="shuaixinjie/browse.html">酒店一览</a>
+                    </li>
+                    <li><a href="gd.html">酒店位置</a></li>
+                    <li ><a href="../share.html">留言</a></li>
+                </ul>
+            </div>
+        </header>
+	<!--HEADER-->
+
+	<!--身-->
+	<div class="container_wrap" style="position: relative;">
+		<div class="container clearfix">
+			<!--左-->
+			<div class="container_l">
+				<h1>新用户注册</h1>
+				<div class="form_list">
+					<form action="register" method="post">
+						<ul>
+							<li class="clearfix">
+								<!-- <span class="s1">电子邮箱:</span>
+<span class="s2"><input type="text" class="valid_ipt" focustext="请填写正确的常用邮箱，以便找回密码。比如：example@example.com" errortext="电子邮箱格式不正确" emptytext="请填写电子邮箱" regexp="mail" />
+</span>
+<span class="s3"><i class="red">*</i> 用于接收密码、订单确认、接收特惠信息。</span> -->
+							</li>
+							<!-- <li class="clearfix">
+<span class="s1">手机号码:</span>
+<span class="s2"><input type="text" class="valid_ipt" focustext="只能是手机号码，请提供正确的手机号码" errortext="手机号码格式不正确" emptytext="请填写手机号码" regexp="telephone" />
+</span>
+<span class="s3"><i class="red">*</i> 用于接收密码、订单确认、会员登录。</span>
+</li> -->
+                            <!-- 账号部分 -->
+							<li class="clearfix"><span class="s1">账号:</span> <span
+								class="s2"><input id="account" type="text"
+									class="valid_ipt" placeholder="账号为大写或小写字母开头，6-20位字母或数字组成" /> </span>
+									<span  class="s3" id="message1" ></span>
+									</li>
+                           
+                             <!-- 密码部分 -->
+							<li class="clearfix"><span class="s1">密码:</span> <span
+								class="s2"><input id="pass" type="password"
+									class="valid_ipt" placeholder="请设置您的密码，长度在6~12个字符之间" /> </span>
+									<span style="color: red" class="s3" id="message2"  ></span>
+									</li>
+							
+							<li class="clearfix"><span class="s1">确认密码:</span> <span
+								class="s2"><input id="ensure_pass" type="password"
+									class="valid_ipt" placeholder="再次确认密码，请与设置的密码保持一致" /> </span></li>
+							
+							
+			                  <!-- 手机号部分 -->				
+							<li class="clearfix"><span class="s1">手机号码:</span> <span
+								class="s2"><input id="tell" type="text" class="valid_ipt"
+									placeholder="请输入手机号"   /> </span> 
+									<span style="color: red" class="s3" id="message3" ></span>
+									</li>
+							
+							<li class="clearfix"><span class="s1">手机验证码:</span> <span
+								class="s2"><input id="code" type="text" class="valid_ipt"
+									placeholder="请输入手机验证码" /> </span> 
+									</li>
+									
+									<li class="clearfix"><span class="s1">&nbsp;</span> <span
+								class="s2"><input type="button"  onclick="settime(this)" class="valid_ipt"
+									value="获取验证码" /> </span> 
+									</li>
+							<!-- 提示消息 -->
+							<li class="clearfix"><span class="s1">&nbsp;</span> 
+							<span class="s2" style="color: red" id="message4" ></span> 
+									</li>
+							<!-- 图形验证码部分 -->
+							<!-- <li class="clearfix"><span class="s1">验证码:</span> <span
+								class="s2"><input type="text" class="valid_ipt"
+									placeholder="请输入验证码" id="code" /> </span> <span class="s3"><i
+									class="red">⊙</i> 用于接收密码、订单确认、会员登录。</span></li> -->
+
+						</ul>
+
+					</form>
+					<div class="yes_rule">
+						<input id="yes_rule" name="" type="checkbox" value=""
+							checked="checked" /><label for="yes_rule">我已看过并同意黄山
+							&middot; 醉温泉会员《注册服务条款》</label>
+					</div>
+					<div class="btn_area">
+						<div class="ishave">
+							<p class="p1">
+								<span class="btn1" onclick="register()" >注册</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--右-->
+			<div class="container_r">
+				<div class="ishave">
+					<p>已经有帐号？请直接登录</p>
+					<p class="p1">
+						<a href="login.html" class="btn1">立即登录</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--尾部-->
+	<div class="footer">Copyright &copy; 2014 黄山 &middot; 醉温泉 All
+		Rights Reserved. 版权所有&nbsp;&nbsp;&nbsp;&nbsp;皖ICP备11009137号</div>
+</div>
+</div>
+	<script type="text/javascript" src="js/register.js"></script>
+</body>
+</html>

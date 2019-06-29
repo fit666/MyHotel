@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=0.95, user-scalable=no" />
+<title>herohotel</title>
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<link rel="stylesheet" href="shuaixinjie/css/style.css" />
+<link rel="stylesheet" href="/css/layui.css"  media="all">
+<script type="text/javascript" src="shuaixinjie/js/landi.js"></script>
+<script type="text/javascript" src="js/share.js"></script>
+</head>
+
+<body class="infor">
+	<div id="slider-wrap">
+	    <div class="camera_overlayer"></div>
+	</div>
+<!--HEADER-->
+<div id="wrapper">
+	<div id="container">
+        <header id="header">
+                    <div id="logo">
+                <a href="index.html"><strong>HERO</strong>酒店</a>
+            </div>
+            <div id="searchbox">
+                <form action="#">
+                    <input type="text" id="search" placeholder="Search" />
+                    <button type="submit"></button>
+                </form>
+            </div>
+            <div id="navigation">
+                <ul id="nav">
+                	<li ><a href="../login.html" style="display: none;" id="loginbox">登录/注册</a></li>
+                    <li ><a href="shuaixinjie/user_center.html" style="display: none;" id="infobox">个人信息</a></li>
+                    <li ><a href="shuaixinjie/bookroom.html">在线预定</a></li>
+                    <li><a href="shuaixinjie/browse.html">酒店一览</a>
+                    </li>
+                    <li><a href="gd.html">酒店位置</a></li>
+                    <li class="selected"><a href="../share.html">留言</a></li>
+                </ul>
+            </div>
+        </header>
+<!--HEADER-->
+
+
+<!--BIG PIC-->
+<!--BIG PIC-->
+
+
+
+<!--CONTENT-->
+<div class="content"  style="position: relative;background-color:rgba(255, 251, 240,0);">
+	<div class="mar1000 clearfix">
+    	<div class="path"><label>客户留言</label></div>
+        
+      <div  style="background:#fff; border:1px solid #eee; padding:30px;">
+		
+		<!--客户留言列表-->
+		 <div style="position:relative ; height:400px; overflow:auto" id="msg" class="guestbook_list"> 
+			<h3>全部留言</h3>
+   	  </div> 
+   	  
+   	  <div  class='guestbook'></div>
+      <div class="clears"></div>
+      
+   	 <div class="page">
+			<div class="page-item first" onclick="firstpage()" >首页</div>
+			<div class="page-item prev" onclick="backpage()" >上一页</div>
+			<div class="page-item"><span id="currentpage">1</span>/<span id="totalpage">1</span></div>
+			<div class="page-item next" onclick="nextpage()" >下一页</div>
+			<div class="page-item last" onclick="lastpage()" >末页</div>
+		</div>
+   	</div>
+    </div>
+   
+</div>
+<!--CONTENT-->
+</div>
+</div> 
+
+
+</body>
+</html>

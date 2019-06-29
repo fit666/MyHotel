@@ -1,0 +1,297 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>酒店地图</title>
+     <script type="text/javascript" src="shuaixinjie/js/jquery-1.8.2.min.js"></script>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+   <link rel="stylesheet" href="shuaixinjie/css/style.css" />
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=d8c2bbfa10fa624186f45cdb31fa3e30=AMap.Driving"></script>
+    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+    <script type="text/javascript" src="shuaixinjie/js/landi.js"></script>
+    <style>
+       
+       /*  html,body{
+        margin:50px auto 15px;
+            height:100%;
+            width: 100%;
+        } */
+        
+        #dd{
+        margin:50px auto 15px;
+            height:400px;
+            width: 800px;
+        }
+
+        .content-window-card {
+            position: relative;
+            box-shadow: none;
+            bottom: 0;
+            left: 0;
+            width: auto;
+            padding: 0;
+        }
+
+        .content-window-card p {
+            height: 2rem;
+        }
+
+        .custom-info {
+            border: solid 1px silver;
+        }
+
+        div.info-top {
+            position: relative;
+            background: none repeat scroll 0 0 #F9F9F9;
+            border-bottom: 1px solid #CCC;
+            border-radius: 5px 5px 0 0;
+        }
+
+        div.info-top div {
+            display: inline-block;
+            color: #333333;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 31px;
+            padding: 0 10px;
+        }
+
+        div.info-top img {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            transition-duration: 0.25s;
+        }
+
+        div.info-top img:hover {
+            box-shadow: 0px 0px 5px #000;
+        }
+
+        div.info-middle {
+            font-size: 12px;
+            padding: 10px 6px;
+            line-height: 20px;
+        }
+
+        div.info-bottom {
+            height: 0px;
+            width: 100%;
+            clear: both;
+            text-align: center;
+        }
+
+        div.info-bottom img {
+            position: relative;
+            z-index: 104;
+        }
+
+        span {
+            margin-left: 5px;
+            font-size: 11px;
+        }
+
+        .info-middle img {
+            float: left;
+            margin-right: 6px;
+        }
+          #panel {
+            position: fixed;
+            background-color: white;
+            max-height: 90%;
+            overflow-y: auto;
+            top: 10px;
+            right: 10px;
+            width: 280px;
+        }
+        #panel .amap-call {
+            background-color: #009cf9;
+            border-top-left-radius: 4px;
+   	        border-top-right-radius: 4px;
+        }
+        #panel .amap-lib-driving {
+	        border-bottom-left-radius: 4px;
+   	        border-bottom-right-radius: 4px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="infor">
+	<div id="slider-wrap">
+	    <div class="camera_overlayer"></div>
+	</div>
+<!--HEADER-->
+	<div id="wrapper">
+	<div id="container">
+        <header id="header">
+                    <div id="logo">
+                <a href="index.html"><strong>HERO</strong>酒店</a>
+            </div>
+            <div id="searchbox">
+                <form action="#">
+                    <input type="text" id="search" placeholder="Search" />
+                    <button type="submit"></button>
+                </form>
+            </div>
+            <div id="navigation">
+                <ul id="nav">
+                	<li ><a href="login.html" style="display: none;" id="loginbox">登录/注册</a></li>
+                    <li ><a href="shuaixinjie/user_center.html" style="display: none;" id="infobox">个人信息</a></li>
+                    <li ><a href="shuaixinjie/bookroom.html">在线预定</a></li>
+                    <li><a href="shuaixinjie/browse.html">酒店一览</a>
+                    </li>
+                    <li class="selected"><a href="gd.html">酒店位置</a></li>
+                    <li ><a href="../share.html">留言</a></li>
+                </ul>
+            </div>
+        </header>
+	<!--HEADER-->
+<div id='dd'></div>
+<div class="info">
+    <h4 id='status'></h4><hr>
+    <p id='result'></p><hr>
+</div>
+<div id="panel"></div>
+ <div id="dd"><input type="button" onclick="mm()" value="酒店位置" > </div>
+ </div>
+ </div>
+<!-- </div> -->
+<!-- <div class="info">
+    点击地图上的点标记，打开所添加的自定义信息窗体
+    <input type="button" onclick="back()" value=" 回到" >
+</div>  -->
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.15&key=d8c2bbfa10fa624186f45cdb31fa3e30"></script>
+<script type="text/javascript">    //地图初始化时，在地图上添加一个marker标记,鼠标点击marker可弹出自定义的信息窗体
+var position = [104.063538, 30.573553]; //简写
+var map = new AMap.Map("dd", {
+    resizeEnable: true,
+});
+
+function mm() {
+	 map.setZoomAndCenter(15, [104.063538, 30.573553]);
+}
+
+addMarker();
+//圆
+var circleMarker = new AMap.CircleMarker({
+    center: new AMap.LngLat(104.063538,30.573553),  // 圆心位置
+    radius: 30, // 圆半径
+    fillColor: 'red',   // 圆形填充颜色
+    strokeColor: '#fff', // 描边颜色
+    strokeWeight: 1, // 描边宽度
+});
+
+map.add(circleMarker);
+
+AMap.plugin('AMap.Geolocation', function() {
+    var geolocation = new AMap.Geolocation({
+        enableHighAccuracy: true,//是否使用高精度定位，默认:true
+        timeout: 10000,          //超过10秒后停止定位，默认：5s
+        buttonPosition:'RB',    //定位按钮的停靠位置
+        buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+        zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
+    });
+    map.addControl(geolocation);
+    geolocation.getCurrentPosition(function(status,result){
+        if(status=='complete'){
+            onComplete(result)
+        }else{
+            onError(result)
+        }
+    });
+});
+ //解析定位结果
+function onComplete(data) {
+    document.getElementById('status').innerHTML='定位成功'
+    var str = [];
+    str.push('您当前的位置');
+    str.push('定位结果：' + data.position);
+    str.push('定位类别：' + data.location_type);
+    
+    if(data.accuracy){
+         str.push('精度：' + data.accuracy + ' 米');
+    }//如为IP精确定位结果则没有精度信息
+    str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+    document.getElementById('result').innerHTML = str.join('<br>');
+}
+//解析定位错误信息
+function onError(data) {
+    document.getElementById('status').innerHTML='定位失败'
+    document.getElementById('result').innerHTML = '失败原因排查信息:'+data.message;
+}
+//添加marker标记
+function addMarker() {
+    map.clearMap();
+    var marker = new AMap.Marker({
+        map: map,
+        position: [104.063538, 30.573553]
+    });
+    //鼠标点击marker弹出自定义的信息窗体
+    AMap.event.addListener(marker, 'click', function () {
+        infoWindow.open(map, marker.getPosition());
+    });
+}
+
+//实例化信息窗体
+var title = 'HeroHotel<span style="font-size:11px;color:#F00;">欢迎你的到来</span>',
+    content = [];
+content.push("<img src='http://tpc.googlesyndication.com/simgad/5843493769827749134'>地址：成都市天府新区孵化园5栋");
+content.push("电话：010-64733333");
+content.push("<a href='/shuaixinjie/bookroom.html'>我们的主页</a>");
+var infoWindow = new AMap.InfoWindow({
+    isCustom: true,  //使用自定义窗体
+    content: createInfoWindow(title, content.join("<br/>")),
+    offset: new AMap.Pixel(16, -45)
+});
+
+//构建自定义信息窗体
+function createInfoWindow(title, content) {
+    var info = document.createElement("div");
+    info.className = "custom-info input-card content-window-card";
+
+    //可以通过下面的方式修改自定义窗体的宽高
+    //info.style.width = "400px";
+    // 定义顶部标题
+    var top = document.createElement("div");
+    var titleD = document.createElement("div");
+    var closeX = document.createElement("img");
+    top.className = "info-top";
+    titleD.innerHTML = title;
+    closeX.src = "https://webapi.amap.com/images/close2.gif";
+    closeX.onclick = closeInfoWindow;
+
+    top.appendChild(titleD);
+    top.appendChild(closeX);
+    info.appendChild(top);
+
+    // 定义中部内容
+    var middle = document.createElement("div");
+    middle.className = "info-middle";
+    middle.style.backgroundColor = 'white';
+    middle.innerHTML = content;
+    info.appendChild(middle);
+
+    // 定义底部内容
+    var bottom = document.createElement("div");
+    bottom.className = "info-bottom";
+    bottom.style.position = 'relative';
+    bottom.style.top = '0px';
+    bottom.style.margin = '0 auto';
+    var sharp = document.createElement("img");
+    sharp.src = "https://webapi.amap.com/images/sharp.png";
+    bottom.appendChild(sharp);
+    info.appendChild(bottom);
+    return info;
+}
+
+//关闭信息窗体
+function closeInfoWindow() {
+    map.clearInfoWindow();
+}
+</script>
+</body>
+</html>

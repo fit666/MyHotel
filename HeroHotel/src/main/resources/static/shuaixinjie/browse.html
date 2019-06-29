@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>TravelSite Theme</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+
+    <!-- Mobile Specific
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- <link rel="stylesheet" href="css/responsive.css" /> -->
+
+    <!-- Java Script
+    ================================================== -->
+    <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile.customized.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="js/camera.min.js"></script>
+    <script type="text/javascript" src="js/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="js/selectnav.min.js"></script>
+    <!--
+    <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=AIzaSyB3tShW1hLlV2lYW8_sCVln6TLF2bWvgU8"></script>-->
+    <script type="text/javascript" src="js/jquery.googlemaps.1.01.min.js"></script>
+    <script type="text/javascript" src="js/theme.js"></script>
+    <script type="text/javascript" src="js/BookRoom.js"></script>
+	<script type="text/javascript" src="js/showAll.js"></script>
+	<script type="text/javascript" src="js/landi.js"></script>
+    <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body class="blog">
+
+<div id="slider-wrap">
+    <div class="camera_overlayer"></div>
+</div>
+
+<div id="wrapper">
+    <div id="container">
+
+        <!--start header -->
+        <header id="header">
+            <div id="logo">
+                <a href="index.html"><strong>HERO</strong>酒店</a>
+            </div>
+            <div id="searchbox">
+                <form action="#">
+                    <input type="text" id="search" placeholder="Search" />
+                    <button type="submit"></button>
+                </form>
+            </div>
+            <div id="navigation">
+                <ul id="nav">
+                    <li ><a href="../login.html" style="display: none;" id="loginbox">登录/注册</a></li>
+                    <li ><a href="user_center.html" style="display: none;" id="infobox">个人信息</a></li>
+                    <li ><a href="bookroom.html">在线预定</a></li>
+                    <li class="selected"><a href="browse.html">酒店一览</a></li>
+                    <li><a href="../gd.html">酒店位置</a></li>
+                    <li><a href="../share.html">留言</a></li>
+                </ul>
+            </div>
+
+
+        </header>
+        <!--end header -->
+
+
+        <div class="subheader">
+            <div class="left">
+                <span class="page-title">酒店一览</span>
+                <span class="page-desc">Welcome to coding Hotel We are NO.1</span>			</div>
+        </div>
+        <!--subheader -->
+
+
+        <div id="content">
+            <div class="tag-filter">
+                <ul>
+                    <li><a class="selected" data-filter="*">客房综观</a></li>
+                    <li><a data-filter=".travel">客房</a></li>
+                    <li><a data-filter=".holidays">会议室</a></li>
+                    <li><a data-filter=".hotel">餐厅</a></li>
+                </ul>
+            </div>
+
+            <div class="tag-filter-container" id="contain">
+
+
+                <div class="one-fourth holidays">
+                    <div class="post-item">
+                        <div class="image-place">
+                            <img src="images/uploads/220x135/egypt.jpg" alt="image" />						</div>
+                        <div class="post-content">
+                            <h2 class="post-title"><a href="browse-detail.html">小型会议室</a></h2>
+                            <p class="post-excerpt">小型会议室</p>
+                        </div>
+                        <div class="post-meta">
+                            <span class="comment-count" id="room">$:2500</span>
+                            <a class="read-more" href="javascript:void(0);" onclick="bookroom()">立即预定</a>						</div>
+                    </div>
+                </div>
+
+                <div class="one-fourth holidays">
+                    <div class="post-item">
+                        <div class="image-place">
+                            <img src="images/uploads/220x135/temple-kyoto.jpg" alt="image" />						</div>
+                        <div class="post-content">
+                            <h2 class="post-title"><a href="browse-detail.html">中型会议室</a></h2>
+                            <p class="post-excerpt">中型会议室</p>
+                        </div>
+                        <div class="post-meta">
+                            <span class="comment-count" id="room">$:5000</span>
+                            <a class="read-more" href="javascript:void(0);" onclick="bookroom()">立即预定</a>						</div>
+                    </div>
+                </div>
+
+                <div class="one-fourth holidays">
+                    <div class="post-item">
+                        <div class="image-place">
+                            <img src="images/uploads/220x135/florence-italy.jpg" alt="image" />						</div>
+                        <div class="post-content">
+                            <h2 class="post-title"><a href="browse-detail.html">大型会议室</a></h2>
+                            <p class="post-excerpt">大型会议室</p>
+                        </div>
+                        <div class="post-meta">
+                            <span class="comment-count" id="room">$:10000</span>
+                            <a class="read-more" href="javascript:void(0);" onclick="bookroom()">立即预定</a>						</div>
+                    </div>
+                </div>
+
+                <div class="one-fourth hotel">
+                    <div class="post-item">
+                        <div class="image-place">
+                            <img src="images/uploads/220x135/mount-rushmore.jpg" alt="image" />						</div>
+                        <div class="post-content">
+                            <h2 class="post-title"><a href="browse-detail.html">中餐厅</a></h2>
+                            <p class="post-excerpt">中餐厅</p>
+                        </div>
+                        <div class="post-meta">
+                            <span class="comment-count" id="room">$:10000</span>
+                            <a class="read-more" href="javascript:void(0);" onclick="bookroom()">立即预定</a>						</div>
+                    </div>
+                </div>
+
+                <div class="one-fourth hotel">
+                    <div class="post-item">
+                        <div class="image-place">
+                            <img src="images/uploads/220x135/paris.jpg" alt="image" />						</div>
+                        <div class="post-content">
+                            <h2 class="post-title"><a href="browse-detail.html">法式餐厅</a></h2>
+                            <p class="post-excerpt">法式餐厅</p>
+                        </div>
+                        <div class="post-meta">
+                            <span class="comment-count" id="room">$:10000</span>
+                            <a class="read-more" href="javascript:void(0);" onclick="bookroom()">立即预定</a>						</div>
+                    </div>
+                </div>
+
+                <div class="one-fourth hotel">
+                    <div class="post-item">
+                        <div class="image-place">
+                            <img src="images/uploads/220x135/royal-versailes.jpg" alt="image" />						</div>
+                        <div class="post-content">
+                            <h2 class="post-title"><a href="browse-detail.html">咖啡厅</a></h2>
+                            <p class="post-excerpt">咖啡厅</p>
+                        </div>
+                        <div class="post-meta">
+                            <span class="comment-count" id="room">$:10000</span>
+                            <a class="read-more" href="javascript:void(0);" onclick="bookroom()">立即预定</a>						</div>
+                    </div>
+                </div>
+
+                <div class="one-fourth hotel">
+                    <div class="post-item">
+                        <div class="image-place">
+                            <img src="images/uploads/220x135/rome.jpg" alt="image" />						</div>
+                        <div class="post-content">
+                            <h2 class="post-title"><a href="browse-detail.html">宴席专场</a></h2>
+                            <p class="post-excerpt">宴席专场</p>
+                        </div>
+                        <div class="post-meta">
+                            <span class="comment-count" id="room">$:15000</span>
+                            <a class="read-more" href="javascript:void(0);" onclick="bookroom()">立即预定</a>						</div>
+                    </div>
+                </div>
+            </div>
+            <!--tag container -->
+
+            <br class="clear" />
+        </div>
+        <!--content -->
+
+    </div>
+    <!--container -->
+</div>
+<!--wrapper -->
+</body>
+</html>

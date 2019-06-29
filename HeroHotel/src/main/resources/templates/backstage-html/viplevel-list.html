@@ -1,0 +1,138 @@
+﻿<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,member-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<link href="/backstage/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="/backstage/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="/backstage/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+
+<title>用户管理</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 会员管理<span class="c-gray en">&gt;</span> 等级管理 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="pd-20">
+	
+	
+	<div class="mt-20">
+	<table class="table table-border table-bordered table-hover table-bg table-sort" width="1000">
+		<thead>
+			<tr>
+				<th scope="col" colspan="10" >等级列表</th>
+			</tr>
+			<tr class="text-c">
+				<th width="180">ID</th>
+				<th width="250">等级</th>
+				<th width="250">消费范围</th>
+				<th width="250">打折率</th>
+				<th width="250">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="text-c" th:if="${vips}!=null" th:each="vip,status:${vips}">
+				<form action="/vip/editVip" method="post" class="layui-form" >
+				<td>
+					<input type="text" th:value="${vip.id}" name="id" readonly="true"  style="outline:none;width:20px;text-align:center;">
+				</td>
+				<td th:text="${vip.vname}">
+					
+				</td>
+				<td >
+					<span th:text="${vip.vmoney}" id="vmoney1"></span>
+					<span id="vmoney2" style="display:none;"  class="layui-form-item" >
+						<span class="Validform_label"><input type="number" value="" name="vmoney"  nullmsg="请输入消费范围" max="100000" min="1" /></span>
+					</span>
+				</td>
+				<td>
+					<span th:text="${vip.discount}" id="discount1"></span>
+					<span id="discount2" style="display:none;"  class="layui-form-item" >
+						<span class="Validform_label"><input type="number" value="" name="discount"  nullmsg="请输入打折率" step="0.01" max="1" min="0.01" /></span>
+						
+					</span>
+				</td>
+				
+				<td class="td-manage">	
+					<span id="editthis" style="display:block"><a title="编辑" href="javascript:;" onclick="system_edit()" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a></span>
+						<span id="saveChange" style="display:none"><input type="submit" value="保存修改" /> </span>
+					<a title="删除" href="javascript:;" th:onclick="vip_del(this,'1',[[${vip.id}]])" class="ml-5" style="text-decoration:none">
+						<i class="Hui-iconfont">&#xe6e2;</i>
+					</a>
+				</td>
+				</form>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	
+</div>
+<script type="text/javascript" src="/backstage/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="/backstage/lib/layer/1.9.3/layer.js"></script>
+<script type="text/javascript" src="/backstage/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="/backstage/lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="/backstage/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="/backstage/js/H-ui.js"></script> 
+<script type="text/javascript" src="/backstage/js/H-ui.admin.js"></script> 
+<script type="text/javascript" th:inline="javascript">
+$(function(){
+	$('.table-sort').dataTable({
+		"aaSorting": [
+		              [ 
+		                1, "desc" 
+		              ]
+		             ],//默认第几个排序
+		"bStateSave": true,//状态保存
+		"aoColumnDefs": [
+		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+		  {"orderable":false,"aTargets":[1,4]}// 制定列不参与排序
+		]
+	});
+	$('.table-sort tbody').on( 'click', 'tr', function () {
+		if ( $(this).hasClass('selected') ) {
+			$(this).removeClass('selected');
+		}
+		else {
+			table.$('tr.selected').removeClass('selected');
+			$(this).addClass('selected');
+		}
+	});
+});
+/*系统-编辑*/
+function system_edit(){
+	$("#editthis").css('display','none');
+	$("#saveChange").css('display','block');
+	
+	$("#vmoney1").css('display','none');
+	$("#vmoney2").css('display','block');
+	
+	$("#discount1").css('display','none');
+	$("#discount2").css('display','block');
+}
+/*会员-删除*/
+function vip_del(obj,id,vid){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			url:"/vip/vipDel",
+			type:"post",
+			data:{
+				"id":vid
+			},
+			success:function(data){
+				if(data=="删除成功"){
+					$(obj).parents("tr").remove();
+					layer.msg('已删除!',{icon:1,time:1000});
+				}else{
+					alert("删除失败，请联系相关工作人员");
+				}
+			}
+		})
+		
+	});
+}
+
+</script> 
+</body>
+</html>

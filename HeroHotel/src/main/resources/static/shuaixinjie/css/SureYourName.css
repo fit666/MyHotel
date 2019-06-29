@@ -1,0 +1,56 @@
+
+#rlname {
+	height: 100px;
+	margin-top: 30px;
+}
+
+#realname {
+	height: 40px;
+	width: 300px;
+	margin-left: 45px;
+	text-align: center;
+}
+
+
+#username {
+	height: 100px;
+	margin-top: -20px;
+}
+
+#telphone {
+	height: 40px;
+	width: 300px;
+	margin-left: 45px;
+	text-align: center;
+}
+
+#password {
+	height: 100px;
+	margin-top: -20px;
+}
+
+#cardid {
+	height: 40px;
+	width: 300px;
+	margin-left: 44px;
+	text-align: center;
+}
+
+#sex {
+	height: 100px;
+	margin-top: -20px;
+	margin-left:40px;
+}
+
+#submit {
+	height: 100px;
+	margin-top: -20px;
+}
+
+#sbt {
+	height: 50px;
+	width: 400px;
+	font-size: 30px;
+	font-family: tunga;
+	background-color: lightskyblue;
+}
