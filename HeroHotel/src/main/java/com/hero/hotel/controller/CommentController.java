@@ -30,7 +30,6 @@ public class CommentController {
 	}
 
 
-
 	//查询所有的评论
 	@RequestMapping("/findAll")
 	@ResponseBody
