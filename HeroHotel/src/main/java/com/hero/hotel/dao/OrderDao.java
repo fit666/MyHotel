@@ -51,8 +51,8 @@ public interface OrderDao {
 				+ "#{orderid},#{quantity},#{starttime},#{day},#{price},#{endtime},#{houseid})")
 		public void addOrderItem(OrderItem orderItem);
 		// 根据订单id查询所有订单项id
-		@Select("select id from t_orderitem where orderid=#{orderid}")
-		public List<Integer> findOrderItemByOrderid(Integer orderid);
+		 @Select("select * from t_orderitem where orderid=#{orderid}")
+			public List<OrderItem> findOrderItemByOrderid(Integer orderid);
 
 		// 个人信息表插入数据
 		@Insert("insert into t_info(tel,uname,sex,idcard) values(#{tel},#{uname},#{sex},#{idcard})")
@@ -224,22 +224,22 @@ public interface OrderDao {
 	/*public void addOrderitem(Integer integer, String starttime, String endtime, int typeid, int day, Integer orderid,
 			BigDecimal price);*/
   //添加订单的用户信息，code by sxj
-  	@Insert("insert into t_info(uname,sex,idcard,userid,tel) values(#{uname},#{sex},#{idcard},#{userid}),#{tel}")
-  	public void addInfoByOrder( String uname, String sex, String idcard,Integer userid,String tel);
+  	@Insert("insert into t_info(tel,uname,sex,idcard,userid) values(#{tel},#{name},#{sex},#{idcard},#{userid})")
+  	public void addInfoByOrder(@Param("tel") String tel,@Param("name") String name,@Param("sex") String sex,@Param("idcard") String idcard,@Param("userid") Integer userid);
   	
   //添加订单，code by sxj
   	@Insert("insert into t_order(createtime,ordernumber,message,infoid,payway,total,userid,flag) values(#{currenttime},#{ordernumber},#{message},#{infoid},#{payway},#{total},#{userid},2)")
-  	public void addOrderInfo(String currenttime, String ordernumber, String message, Integer infoid, String payway, Double total, Integer userid);
-
+  	public void addOrderInfo(@Param("currenttime") String currenttime,@Param("ordernumber") String ordernumber,@Param("message") String message,@Param("infoid") Integer infoid,@Param("payway") String payway,@Param("total") Double total,@Param("userid") Integer userid);
+ 
   //返回订单id
   	@Select("select orderid from t_order where ordernumber=#{ordernumber}")
   	public Integer findOrderidByOrdernumebr(String ordernumber);
   	
   //添加订单项
     @Insert("insert into t_orderitem(houseid,starttime,endtime,typeid,day,orderid,quantity,price) values(#{integer},#{starttime},#{endtime},#{typeid},#{day},#{orderid},1,#{price})")
-	public void addOrderitem(Integer integer, String starttime, String endtime, int typeid, int day, Integer orderid,BigDecimal price);
-
- // 查找所有房间类型
+	public void addOrderitem(@Param("integer") Integer integer,@Param("starttime") String starttime,@Param("endtime") String endtime,@Param("typeid") int typeid,@Param("day") int day,@Param("orderid") Integer orderid,@Param("price") Double price);
+ 
+    // 查找所有房间类型
  	@Select("select * from t_housetype where flag=1")
  	public List<HouseType> findAllType();
 

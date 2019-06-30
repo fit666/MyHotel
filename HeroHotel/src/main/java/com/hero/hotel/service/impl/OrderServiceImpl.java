@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 	//查询订单id,根据订单编号查找
 			@Override
-			public List<Integer> findOrderItemByOrderid(Integer orderid) {		
+			public List<OrderItem> findOrderItemByOrderid(Integer orderid) {		
 				return orderDao.findOrderItemByOrderid(orderid);
 			}
 	// 个人信息表插入数据
@@ -218,7 +218,6 @@ public class OrderServiceImpl implements OrderService {
 		return houseNumber;
 	}
 	//code by sxj , 大佬别删我
-	//code by sxj , 大佬别删我
 		@Override
 		public void orderSubmit(String ordernumber, String currenttime, String name, String sex, String tel, String idcard, List<String> todays, List<Integer> housenumber,Integer userid,Double discount,String message) throws ParseException {
 			//先放入用户信息，并返回一个用户id，先用手机号检索，如果有就不插入了，没有就插入
@@ -226,7 +225,7 @@ public class OrderServiceImpl implements OrderService {
 			Info userInfo=orderDao.findInfoByTel(tel);
 			System.out.println(userInfo);
 			if (userInfo==null){
-				orderDao.addInfoByOrder(name,sex,idcard,userid,tel);
+				orderDao.addInfoByOrder(tel,name,sex,idcard,userid);
 				Info info = orderDao.findInfoByTel(tel);
 				infoid=info.getInfoid();
 			}else {
@@ -287,7 +286,7 @@ public class OrderServiceImpl implements OrderService {
 
 							HouseType houseType=orderDao.findPriceByTypeid(typeid);
 
-							orderDao.addOrderitem(houseidByType.get(j), starttime, endtime, typeid, day, orderid, houseType.getPrice());
+							orderDao.addOrderitem(houseidByType.get(j), starttime, endtime, typeid, day, orderid, houseType.getPrice().doubleValue());
 
 							houseDao.addDay(houseidByType.get(j),typeid,todays.get(k),infoid);
 

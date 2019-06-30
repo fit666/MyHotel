@@ -127,8 +127,8 @@ public class OrderController {
 				orderItem.setHouseid(liveNotes.getHouseid());
 				orderService.addOrderItem(orderItem);
 				// 订单根据订单id获取所有订单项id
-				List<Integer> orderItemids = orderService.findOrderItemByOrderid(order2.getOrderid());
-				liveNotes.setOrderItemid(orderItemids.get(i));
+				List<OrderItem> orderItemids = orderService.findOrderItemByOrderid(order2.getOrderid());
+				liveNotes.setOrderItemid(orderItemids.get(i).getId());
 				for (int k = 0; k < allDay.size(); k++) {
 					liveNotes.setDate(allDay.get(k));
 					orderService.addLiveNotes(liveNotes);
@@ -226,105 +226,9 @@ public class OrderController {
 
 	}
 
-	// 根据时间段检索房间信息 code by sxj
-	@RequestMapping("/findHouseByDays")
-	@ResponseBody
-	public Integer[] findHouseByDays(Date livetime, Integer days, HttpSession session) {
-
-		// 获得 入住时间的时间戳
-		long times = livetime.getTime();
-		// 用一个数组装下所有日期
-		List<String> todays = new ArrayList<>();
-		for (int i = 0; i < days; i++) {
-			long newTimes = times + 1000 * 60 * 60 * 24 * i;
-			String ymd = new SimpleDateFormat("yyyy-MM-dd").format(new Date(newTimes)).toString();
-			todays.add(ymd);
-		}
-
-		// 用一个简单的数组装，下标是房间类型
-		Integer[] houseNumberAbleIive = new Integer[5];
-		houseNumberAbleIive[0] = 0;
-		for (int i = 1; i < 5; i++) { // i是房间类型
-			Integer houseNumber = orderService.findHouseNumberByTypeid(todays, i);
-			houseNumberAbleIive[i] = houseNumber;
-		}
-		// 把这个数组装下的日期传进session，订单用
-		session.setAttribute("timeslot", todays);
-		return houseNumberAbleIive;
-	}
-
-	// 提交用户的预订单，code by sxj
-	@RequestMapping("/createorder")
-	@ResponseBody
-	public String createOrder(String message, String hn, String name, String tel, String sex, String idcard,
-			HttpSession session) throws ParseException {
-		System.out.println(tel+"shoujihao");
-		List<Integer> housenumber = JSONArray.fromObject(hn); // 真的好厉害啊，那前端数组处理的很漂亮
-
-		// 获得当前时间currenttime
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
-		String currenttime = df.format(new Date()).toString();// new
-																// Date()为获取当前系统时间
-
-		// 随机生成一个订单号id
-		Random random = new Random();
-		int rannum = (int) (random.nextDouble() * (9 - 1 + 1)) + 1;
-		long date = new Date().getTime();
-		String ordernumber = String.valueOf(rannum) + "" + String.valueOf(date);
-
-		// 从session直接拿出要用的时间段
-		List<String> todays = (List) session.getAttribute("timeslot");
-
-		String result = "";
-		User user = (User) session.getAttribute("user");
-		if (user == null) {
-			result = "请先登录";
-			return result;
-		}
-		Integer id = user.getId();
-		System.out.println("用户的id:" + id);
-		Vip vip = (Vip) user.getVip();
-		System.out.println(vip.getDiscount());
-
-		// 如果这个用户已经有订单了，需要先将这个订单处理了
-		List<Integer> flags = orderService.findFlagById(id);
-		System.out.println(flags);
-		for (int i = 0; i < flags.size(); i++) {
-			if (flags.get(i).equals(2)) {
-				result = "你还有订单未处理";
-				return result;
-			}
-		}
-
-		// 在service里面去一次性把所有业务处理了
-		// Integer id = 1; //从session获得一个id
-
-		Double discount = vip.getDiscount(); // 从session获得会员等级得到折扣
-
-		if (!tel.matches(RegexUtil.REGEX_MOBILE)) {
-			result = "手机号码格式不正确";
-			return result;
-		} else if (!idcard.matches(RegexUtil.REGEX_ID_CARD)) {
-			result = "身份证格式不正确";
-			return result;
-		} else if (name.equals("")) {
-			result = "请输入姓名";
-			return result;
-		} else if (housenumber.get(1).equals(0) && housenumber.get(2).equals(0) && housenumber.get(3).equals(0)
-				&& housenumber.get(4).equals(0)) {
-			result = "请添加住房信息";
-			return result;
-		}
-
-		else {
-			System.out.println(name);
-			orderService.orderSubmit(ordernumber, currenttime, name, sex, tel, idcard, todays, housenumber, id,
-					discount, message);
-			result = "订单生产";
-		}
-
-		return result;
-	}
+	
+	
+	
 
 	@RequestMapping("/allOrders")
 	@ResponseBody
@@ -335,5 +239,108 @@ public class OrderController {
 
 		return orders;
 	}
+	
+	
+	
+	
+	
+	//根据时间段检索房间信息  code by sxj
+		@RequestMapping("/findHouseByDays")
+		@ResponseBody
+		public Integer[] findHouseByDays(Date livetime,Integer days,HttpSession session){
+
+			//获得 入住时间的时间戳
+			long times=livetime.getTime();
+			//用一个数组装下所有日期
+			List<String> todays=new ArrayList<>();
+			for (int i = 0; i < days; i++) {
+				long newTimes=times+1000*60*60*24*i;
+				String ymd = new SimpleDateFormat("yyyy-MM-dd").format(new Date(newTimes)).toString();
+				todays.add(ymd);
+			}
+
+			//用一个简单的数组装，下标是房间类型
+	        Integer[] houseNumberAbleIive = new Integer[5];
+			houseNumberAbleIive[0]=0;
+	        for (int i = 1; i < 5 ; i++) {  //i是房间类型
+	            Integer houseNumber=orderService.findHouseNumberByTypeid(todays,i);
+	            houseNumberAbleIive[i]=houseNumber;
+	        }
+			//把这个数组装下的日期传进session，订单用
+			session.setAttribute("timeslot",todays);
+			return houseNumberAbleIive;
+		}
+		//提交用户的预订单，code by sxj
+		@RequestMapping("/createorder")
+		@ResponseBody
+		public String createOrder(String message,String hn,String name,String tel,String sex,String idcard,HttpSession session) throws ParseException {
+			List<Integer> housenumber= JSONArray.fromObject(hn);  //真的好厉害啊，那前端数组处理的很漂亮
+
+	        //获得当前时间currenttime
+	        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+	        String currenttime=df.format(new Date()).toString();// new Date()为获取当前系统时间
+
+			//随机生成一个订单号id
+			Random random=new Random();
+			int rannum= (int)(random.nextDouble()*(99999-10000 + 1))+ 10000;
+			long date = new Date().getTime();
+			String ordernumber = String.valueOf(rannum) + "" + String.valueOf(date);
+
+			//从session直接拿出要用的时间段
+			List<String> todays=(List)session.getAttribute("timeslot");
+
+
+			String result = "";
+			User user = (User) session.getAttribute("user");
+			if (user==null){
+				result="请先登录";
+				return result;
+			}
+			Integer id = user.getId();
+			System.out.println("用户的id:"+id);
+			Vip vip = (Vip) user.getVip();
+			System.out.println(vip.getDiscount());
+
+			//如果这个用户已经有订单了，需要先将这个订单处理了
+			List<Integer> flags = orderService.findFlagById(id);
+			System.out.println(flags);
+			for (int i = 0; i < flags.size(); i++) {
+				if(flags.get(i).equals(2)){
+					result="你还有订单未处理";
+					return result;
+				}
+			}
+
+			//在service里面去一次性把所有业务处理了
+			//Integer id = 1;  //从session获得一个id
+
+
+			Double discount = vip.getDiscount();   //从session获得会员等级得到折扣
+
+
+			if(!tel.matches(RegexUtil.REGEX_MOBILE)){
+				result="手机号码格式不正确";
+				return result;
+			}
+			else if(!idcard.matches(RegexUtil.REGEX_ID_CARD)){
+				result="身份证格式不正确";
+				return result;
+			}else if(name.equals("")){
+				result="请输入姓名";
+				return result;
+			}else if(housenumber.get(1).equals(0)&&housenumber.get(2).equals(0)&&housenumber.get(3).equals(0)&&housenumber.get(4).equals(0)){
+				result="请添加住房信息";
+				return result;
+			}
+
+			else {
+				orderService.orderSubmit(ordernumber,currenttime,name,sex,tel,idcard,
+						todays,housenumber,id,discount,message);
+				result="订单生产";
+			}
+
+	 		return result;
+		}
+	
 
 }

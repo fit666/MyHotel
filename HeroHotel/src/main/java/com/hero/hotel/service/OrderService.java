@@ -42,7 +42,7 @@ public interface OrderService {
 	public Order findIdByOrderNumber(String orderNumber);
 
 	// 根据订单id查询所有订单项
-	public List<Integer> findOrderItemByOrderid(Integer orderid);
+	public List<OrderItem> findOrderItemByOrderid(Integer orderid);
 
 	// 查找房间价格
 	public HouseType findPriceByTypeid(Integer typeid);
