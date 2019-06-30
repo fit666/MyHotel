@@ -37,11 +37,17 @@ public class ManagerController {
 	 
     @RequestMapping("/login")
     @ResponseBody
-	public String login(User user, String codeValue, HttpSession session) {
-    
+	public ModelAndView login(User user, String codeValue, HttpSession session) {
+    	ModelAndView mav=new ModelAndView();
     	String result=managerService.login(user,codeValue,session);
-    	
-		return result;
+    	if(result.equals("登录成功")){
+    		mav.setViewName("/backstage-html/manager-index.html");
+    	}
+    	else{
+    		mav.addObject("result", result);
+        	mav.setViewName("/backstage-html/manager-login2.html");
+    	}
+		return mav;
 	}
 	 
 	 

@@ -50,6 +50,10 @@ public class VipController {
 	@RequestMapping("/editVip")
 	@ResponseBody
 	public String editVip(@ModelAttribute Vip vip){
+		//判断数据格式是否正确
+		if(vip.getDiscount()==null || vip.getVmoney()==null){
+			return "数据格式不正确";
+		}
 		return vipService.editVip(vip);
 	}
 	/*
@@ -66,6 +70,7 @@ public class VipController {
 	@RequestMapping("/addVip")
 	public ModelAndView addVip(@ModelAttribute Vip vip){
 		ModelAndView mav=new ModelAndView();
+	
 		boolean re=vipService.addVip(vip);
 		if(re){
 			List<Vip> vips=vipService.findAllVips();

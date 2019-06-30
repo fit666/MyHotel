@@ -26,7 +26,7 @@ public interface InfoDao {
 	public boolean updateManagerMessage(Info info);
 	//添加管理员的个人信息
 	@Insert("insert into t_info(uname,sex,tel,idcard,userid,flag) values(#{uname},#{sex},#{tel},#{idcard},#{userid},2)")
-	public boolean addInfo(Info info);
+	public boolean addManagerInfo(Info info);
 	//获取新插入的个人信息的id
 	@Select("select infoid from t_info where tel=#{tel} and flag=2")
 	public Integer findInfoidByMid(String tel);

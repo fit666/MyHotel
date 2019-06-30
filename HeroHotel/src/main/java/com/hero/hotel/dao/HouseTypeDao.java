@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
 
 import com.hero.hotel.pojo.HouseType;
@@ -28,5 +29,9 @@ public interface HouseTypeDao {
 	List<HouseType> findAllType();
 	@Select("select typeid,hname,serve,breakfast,imgurl,price from t_housetype where flag=1")
 	List<HouseType> queryAllType();
+	
+	//将新的房间类型保存到数据库
+	@Insert("insert into t_housetype(hname,serve,breakfast,price,imgurl) values(#{hname},#{serve},#{breakfast},#{price},#{imgurl})")
+	public boolean addHouseType(HouseType ht);
 
 }

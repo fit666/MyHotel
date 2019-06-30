@@ -25,6 +25,7 @@ public class ManagerRealm extends AuthorizingRealm{
 
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+		
 		//获取账号
 		String account=(String)token.getPrincipal();
 		User manager=managerService.findManagerPwd(account);

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<link href="/backstage/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="/backstage/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="/backstage/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/backstage/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="/backstage/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+
+<title>新增房间</title>
+</head>
+<body>
+<div class="pd-20">
+	<form action="/room/addRoom" method="post" class="form form-horizontal" id="form-article-add">
+		<div class="row cl">
+			<label class="form-label col-2"><span class="c-red">*</span>请选择房间类型：</label>
+			<div class="formControls col-2"> <span class="select-box">
+				<select name="typeid" class="select">
+					<option th:each="type,status:${allType}" th:value="${type.typeid}" th:text="${type.hname}"></option>
+				</select>
+				</span> </div>
+			<label class="form-label col-2">新增房间数量：</label>
+			<div class="formControls col-2">
+				<input type="number" class="input-text" value="0" placeholder="" min="1" step="1" id="" name="number">
+			</div>
+		</div>
+		<div class="row cl">
+				<div class="col-10 col-offset-2">
+					<button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 提交</button>
+					<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+				</div>
+		</div>
+	</form>
+		<div  class="row cl" style="height:30px;">
+		
+		</div>
+		<hr><!-- 分界线 -->
+	<!-- <form action="/housetype/" method="post" class="form form-horizontal" id="form-article-add"> -->
+		<form action="/fileUpload" method="post" enctype="multipart/form-data">
+		<div class="row cl">
+			<label class="form-label col-2" ><font size="4">新增房间类型</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		
+		<div style="height:30px;"></div>
+		<div class="row cl">
+			<label class="form-label col-2"><font color="red">*</font>类型名：</label>
+			<div class="formControls col-10">
+				<input type="text" class="input-text" style="width:250px;" value="" placeholder="" id="user-name" name="hname" datatype="s2-16" nullmsg="房间类型名不能为空" errormsg="请输入2-16位字符">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-2"><span class="c-red">*</span>房间服务：</label>
+			<div class="formControls col-5">
+				<input type="text" class="input-text" value="" placeholder="" id="user-name" name="serve" datatype="s2-16" nullmsg="服务内容不能为空" errormsg="请输入2-16位中文汉字">
+			</div>
+			<div class="col-4"> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-2">是否含早：</label>
+			<div class="formControls col-4">
+				<select class="select" name="breakfast">
+					<option value="是">是</option>
+					<option value="否">否</option>
+				</select>
+			</div>
+			<div class="col-4"> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-2"><span class="c-red">*</span>单价：</label>
+			<div class="formControls col-5">
+				<input type="number" value="" name="price"  nullmsg="请输入房间单价" max="1000000" min="1" class="input-text" style="width:90%" />
+			</div>
+			<div class="col-4"> </div>
+		</div>
+	
+		<div class="row cl">
+			<label class="form-label col-2">图片上传：</label>
+			<div class="formControls col-10">
+				<div class="uploader-list-container">
+					<div class="queueList">
+						<div id="dndArea" class="placeholder">
+							<div id="filePicker-2">
+								<!-- <form action="/fileUpload" enctype="multipart/form-data" method="post">
+									<input type="file" name="imgurl"><br>
+									<input type="submit"  class="btn btn-primary radius"   value="上传">
+								</form> -->
+								
+							
+									<p><!-- 选择文件:  --><input type="file" name="imgurl" /></p>
+									
+								
+							
+							</div>
+					
+							
+								
+							
+						<!-- 	<p>或将照片拖到这里，单次最多可选3张</p> -->
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	<div class="row cl">
+			<div class="col-10 col-offset-2">
+				<button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 提交</button>
+				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+			</div>
+		</div>
+	</form>
+		
+</div>
+</div>
+<script type="text/javascript" src="/backstage/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="/backstage/lib/layer/1.9.3/layer.js"></script> 
+<script type="text/javascript" src="/backstage/lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="/backstage/lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="/backstage/lib/Validform/5.3.2/Validform.min.js"></script> 
+<script type="text/javascript" src="/backstage/lib/webuploader/0.1.5/webuploader.min.js"></script> 
+<script type="text/javascript" src="/backstage/lib/ueditor/1.4.3/ueditor.config.js"></script>
+<script type="text/javascript" src="/backstage/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="/backstage/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="/backstage/js/H-ui.js"></script> 
+<script type="text/javascript" src="/backstage/js/H-ui.admin.js"></script> 
+<script type="text/javascript" th:inline="javascript">
+//房间类型添加结果
+var result=[[${result}]]
+alert(result)
+
+
+        
+</script>
+</body>
+</html>
