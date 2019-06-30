@@ -46,17 +46,19 @@ public class OrderController {
 		// 获取入住天数
 		int id = 1;// 还未获取
 		// 插入个人信息表
-		System.out.println(info);
-		orderService.addInfo(info);
-		Info info2 = orderService.findId(info.getIdcard());
-		order.setInfoid(info2.getInfoid());// 存入个人信息id
-		order.setUserid(id);
-		User user = orderService.findMonetaryByid(id);
+				Info info2 = orderService.findId(info.getIdcard());
+				if (info2.getIdcard().equals(info.getIdcard())) {
+					order.setInfoid(info2.getInfoid());// 存入个人信息id
+				} else {
+					orderService.addInfo(info);
+					Info info3 = orderService.findId(info.getIdcard());
+					order.setInfoid(info3.getInfoid());// 存入个人信息id
+				}
+
 		// 从前台查询顾客信息直接获取对应的折扣
 		double total1;
 		// 总价
 		// 查询房间单价
-		System.out.println(orderItem);
 		HouseType houseType = orderService.findPriceByTypeid(orderItem.getTypeid());
 		BigDecimal b = houseType.getPrice();
 		int price = b.intValue();
@@ -106,11 +108,12 @@ public class OrderController {
 		}
 		// 查询个人信息id
 		Order order2 = orderService.findIdByOrderNumber(orderNumber);
+		Info newinfo = orderService.findId(info.getIdcard());
 
 		// 将个人信息id加入入住信息
 		if (roomIds.size() >= orderItem.getQuantity()) {
 
-			liveNotes.setInfoid(info2.getInfoid());
+			liveNotes.setInfoid(newinfo.getInfoid());
 			// 将可入住房间加入入住信息表
 			int roomnumber = orderItem.getQuantity();
 			for (int i = 0; i < roomnumber; i++) {

@@ -60,7 +60,7 @@ public interface OrderDao {
 
 
 	// 查询个人信息id
-	@Select("select * from t_info where idcard = #{idcard}")
+	@Select("select * from t_info where idcard = #{idcard} flag = 1")
 	public Info findId(String idcard);
 
 	// 入住日志表插入数据
@@ -75,10 +75,10 @@ public interface OrderDao {
 	 * 筛选可以入住房间信息
 	 */
 	// 查找该类型的所有房间，查找当天入住日志表中该类房间已经入住的房间，
-	@Select("select id from t_house where typeid=#{typeid}")
+	@Select("select id from t_house where typeid=#{typeid} and flag = 1 or flag = 2")
 	public List<Integer> findAllRoomsByTypeid(Integer typeid);
 
-	@Select("select id from t_livenotes where typeid=#{typeid} and date is not null")
+	@Select("select id from t_livenotes where typeid=#{typeid} and date is not null and flag = 1")
 	public List<Integer> findAllliveRoomsByTypeid(LiveNotes liveNotes);
 
 	// 根据账号id获取消费金额，通过消费金额获取对应的会员折扣
