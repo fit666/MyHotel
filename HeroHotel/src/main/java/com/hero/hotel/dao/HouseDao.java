@@ -34,8 +34,8 @@ public interface HouseDao {
 	@Select("select id from t_house where typeid=#{typeid}")
 	List<Integer> findHouseidByType(Integer typeid);
 
-	@Insert("insert into t_livenotes(houseid,typeid,date,infoid,flag) values(#{houseid},#{typeid},#{s},#{infoid},1)")
-	public void addDay(@Param("houseid") Integer houseid,@Param("typeid") int typeid,@Param("s") String s,@Param("infoid") Integer infoid);
+	@Insert("insert into t_livenotes(orderItemid,houseid,typeid,date,infoid,flag) values(#{orderitemid},#{houseid},#{typeid},#{s},#{infoid},1)")
+	public void addDay(@Param("orderitemid") Integer orderitemid,@Param("houseid") Integer houseid,@Param("typeid") int typeid,@Param("s") String s,@Param("infoid") Integer infoid);
 
 	//根据房间类型id查询所有对应的房间
 	@Select("select * from t_house where typeid=#{typeid}")

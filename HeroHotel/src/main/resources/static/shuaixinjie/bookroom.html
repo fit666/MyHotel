@@ -413,7 +413,12 @@
 			success: function(result) {
 				if(result=="订单生产"){
 					location.href="order.html"
-				}else {
+				}else if(result="你还有订单未处理"){
+					alert(result)
+					location.href="order.html"
+				}
+				
+				else {
 					alert(result)
 				}
 			}

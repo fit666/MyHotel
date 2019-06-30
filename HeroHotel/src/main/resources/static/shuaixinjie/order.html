@@ -314,6 +314,7 @@ function pay(){
                 $("#allpay").html(priceT1+priceT2+priceT3+priceT4)
                 //折后的价格,假装有个8折
                 var discount=0.8;
+                //请求获得折扣
                 var sumprice2=(priceT1+priceT2+priceT3+priceT4)*0.8
                 var sumprice=sumprice2.toFixed(2)
                 $("#discountpay").html(sumprice)
@@ -372,6 +373,7 @@ function pay(){
 
     function deleteorder() {
         alert("删除订单")
+        
     }
 
     function payorder() {

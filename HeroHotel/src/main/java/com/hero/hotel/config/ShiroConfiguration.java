@@ -110,6 +110,8 @@ public class ShiroConfiguration {
 		
 		//配置需要认证的资源
 //		map.put("/**", "authc");
+		
+		map.put("/shuaixinjie/order.html", "authc,roles[user]");
 		bean.setFilterChainDefinitionMap(map);
 		//配置登录页面
 		bean.setLoginUrl("/login.html");

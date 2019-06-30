@@ -285,10 +285,11 @@ public class OrderServiceImpl implements OrderService {
 						for (int k = 0; k < todays.size(); k++) {
 
 							HouseType houseType=orderDao.findPriceByTypeid(typeid);
+							
+							Integer orderitemid = (int)(Math.random()*1000000000);
+							orderDao.addOrderitem(orderitemid,houseidByType.get(j), starttime, endtime, typeid, day, orderid, houseType.getPrice().doubleValue());
 
-							orderDao.addOrderitem(houseidByType.get(j), starttime, endtime, typeid, day, orderid, houseType.getPrice().doubleValue());
-
-							houseDao.addDay(houseidByType.get(j),typeid,todays.get(k),infoid);
+							houseDao.addDay(orderitemid,houseidByType.get(j),typeid,todays.get(k),infoid);
 
 						}
 						housenumber.set(typeid,housenumber.get(typeid)-1);

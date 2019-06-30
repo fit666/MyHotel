@@ -236,8 +236,8 @@ public interface OrderDao {
   	public Integer findOrderidByOrdernumebr(String ordernumber);
   	
   //添加订单项
-    @Insert("insert into t_orderitem(houseid,starttime,endtime,typeid,day,orderid,quantity,price) values(#{integer},#{starttime},#{endtime},#{typeid},#{day},#{orderid},1,#{price})")
-	public void addOrderitem(@Param("integer") Integer integer,@Param("starttime") String starttime,@Param("endtime") String endtime,@Param("typeid") int typeid,@Param("day") int day,@Param("orderid") Integer orderid,@Param("price") Double price);
+    @Insert("insert into t_orderitem(id,houseid,starttime,endtime,typeid,day,orderid,quantity,price) values(#{orderitemid},#{integer},#{starttime},#{endtime},#{typeid},#{day},#{orderid},1,#{price})")
+	public void addOrderitem(@Param("orderitemid") Integer orderitemid,@Param("integer") Integer integer,@Param("starttime") String starttime,@Param("endtime") String endtime,@Param("typeid") int typeid,@Param("day") int day,@Param("orderid") Integer orderid,@Param("price") Double price);
  
     // 查找所有房间类型
  	@Select("select * from t_housetype where flag=1")

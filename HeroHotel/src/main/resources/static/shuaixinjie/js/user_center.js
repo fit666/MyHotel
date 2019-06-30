@@ -45,24 +45,25 @@ function showOrders(){
 		success:function(data){
 			var context="";
 			for(var i=0;i<data.length;i++){
+
 				var dat = new Date(data[i].createtime).toJSON().substr(0, 10).replace('T', ' ');
+				if(data[i].paynumber==null){
+					var pay = "";
+				}else{
+					var pay = data[i].paynumber.substr(0, 10);
+				}
 				context+="<tr>"
 							+"<td>"+data[i].ordernumber+"</td>"
 							+"<td>"+dat+"</td>"
 							+"<td>"+data[i].total+"</td>"
 							+"<td>"+data[i].payway+"</td>"
-							+"<td>"+data[i].paynumber.substr(0, 10)+"</td>"
+							+"<td>"+pay+"</td>"
 							+"<td><button class='btn btn-default btn-lg' data-toggle='modal' data-target='#myModal' onclick='addorder("+data[i].ordernumber+")' >评论</button></td>"
 							+"<td><button class='btn btn-default btn-lg' onclick='refu("+data[i].ordernumber+",\""+dat+"\")' >退款</button></td>"	
 							+"</tr>";
-			}
-			context=context+"<tr><td colspan='7'></td></tr>";
-			$("#orders").html(context);
-			closeBox();
-			closeVip();
-			closePwd();
-			showOrder();
-		}
+			
+			};
+
 	})
 }
 function addorder(a){
