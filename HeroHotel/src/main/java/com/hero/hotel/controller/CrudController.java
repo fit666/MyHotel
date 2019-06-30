@@ -31,4 +31,13 @@ public class CrudController {
 
         return order;
     }
+    
+    @RequestMapping("/deleteorder")
+    @ResponseBody
+    public String deleteOrder(String ordernumber) {
+    	
+    	orderService.deleteOrder(ordernumber);
+    	
+    	return "删除成功";
+    }
 }

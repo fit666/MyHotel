@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 
 import com.hero.hotel.pojo.Order;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Param;
@@ -51,7 +52,7 @@ public interface OrderDao {
 				+ "#{orderid},#{quantity},#{starttime},#{day},#{price},#{endtime},#{houseid})")
 		public void addOrderItem(OrderItem orderItem);
 		// 根据订单id查询所有订单项id
-		 @Select("select * from t_orderitem where orderid=#{orderid}")
+		 @Select("select * from t_orderitem where orderid=#{orderid} and flag=1")
 			public List<OrderItem> findOrderItemByOrderid(Integer orderid);
 
 		// 个人信息表插入数据
@@ -242,6 +243,26 @@ public interface OrderDao {
     // 查找所有房间类型
  	@Select("select * from t_housetype where flag=1")
  	public List<HouseType> findAllType();
+ 	
+//	public void changeOrderFlagByOrdernumber(String ordernumber);
+
+	@Update("update t_order set flag=0 where ordernumber=#{ordernumber}")
+	public void changeOrderFlagByOrdernumber(String ordernumber);
+
+	
+	@Select("select orderid from t_order where ordernumber=#{ordernumber}")
+	public Integer findIdByOrderNum(String ordernumber);
+
+	@Select("select orderid from t_orderitem where orderid=#{orderid}")
+	public List<Integer> findOrderItemIdByOrderid(Integer orderid);
+
+	@Update("update t_orderitem set flag=0 where id=#{integer}")
+	public void chageOrderItemFlag(Integer integer);
+
+	@Delete("delete from t_livenotes where orderItemid=#{orderItemid}")
+	public void deleteLiveInfo(Integer orderItemid);
+
+
 
     
 }

@@ -74,7 +74,8 @@
 	
 		<h2>订单信息</h2>
 		<div class="ddxx"><label>订单状态：有效</label><label>订单号：<strong id="ordernumber">01401113230234124123S</strong></label><label><a href="" class="print">打印订单</a></label><label>支付状态：<b style="color: red" id="ispay">未支付</b></label><label><a href="#" class="btn31">马上支付</a></label></div>
-		<div class="ddxx" style="border-bottom:0;"><label>订单已经生效，如需事后支付或取消订单，请在订单保留时效前在【订单管理】中进行。</label><label><a href="#" class="btn31">订单管理</a></label></div>
+		<div class="ddxx" style="border-bottom:0;"><label>订单已经生效，如需事后支付或取消订单，请在订单保留时效前在【订单管理】中进行。</label><label>
+		<!-- <a href="#" class="btn31">订单管理</a> --></label></div>
 		
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table2" style="margin-bottom:10px;">
   <tr class="tr1">
@@ -146,12 +147,12 @@
 
         <a onclick="deleteorder()">删除订单</a>
 
-
+<!-- 
         <a >
             <span onclick="openwindow()">修改订单</span>
-            <!-- 弹窗隐藏区域 -->
+            弹窗隐藏区域
             <div id="myModal" class="modal">
-                <!-- 弹窗内容 -->
+                弹窗内容
                 <div class="modal-content">
                     <div class="modal-header">
                         <span class="close">&times;</span>
@@ -172,7 +173,7 @@
 
 
         </a>
-
+ -->
 
 
 
@@ -372,7 +373,18 @@ function pay(){
     }
 
     function deleteorder() {
-        alert("删除订单")
+    	var ordernumber=$("#ordernumber").html()
+    	alert(ordernumber)
+        $.ajax({
+            url:"../crud/deleteorder",
+            type:"post",
+            data:{
+                "ordernumber":ordernumber
+            },
+            success:function (result) {
+                alert(result)
+            }
+        })
         
     }
 

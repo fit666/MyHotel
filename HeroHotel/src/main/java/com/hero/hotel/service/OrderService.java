@@ -88,4 +88,6 @@ public interface OrderService {
 	public void InsertPay(Order order);
 
 	public List<Order> findOrders(Integer id);
+
+	public void deleteOrder(String ordernumber);
 }

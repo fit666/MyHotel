@@ -328,4 +328,22 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		return orderDao.queryAllOrders(id);
 	}
+	@Override
+	public void deleteOrder(String ordernumber) {
+		//先根据ordernumber找到订单id
+		Integer orderid = orderDao.findIdByOrderNum(ordernumber);
+		//改掉这个订单的状态码为0，即删除
+		orderDao.changeOrderFlagByOrdernumber(ordernumber);
+		//获得所有该子订单的id
+		List<Integer> orderitemids = orderDao.findOrderItemIdByOrderid(orderid);
+		//遍历处理livenotes和orderitem的flag
+		for (int i = 0; i < orderitemids.size(); i++) {
+			Integer orderItemid = orderitemids.get(i);
+			orderDao.chageOrderItemFlag(orderItemid);
+			
+			orderDao.deleteLiveInfo(orderItemid);
+		}
+		
+		
+	}
 }
