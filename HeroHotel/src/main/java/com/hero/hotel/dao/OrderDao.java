@@ -164,7 +164,7 @@ public interface OrderDao {
 	public Double findMoneyMonthOut(String Monthtime);
 
 	// 修改订单 结账处理
-	@Update("UPDATE t_orderitem SET falg = #{flag1} WHERE  id= #{orderItemid} AND  flag = #{flag2}")
+	@Update("UPDATE t_orderitem SET flag = #{flag1} WHERE  id= #{orderItemid} AND  flag = #{flag2}")
 	public Boolean settleAccounts(@Param("flag1") Integer flag1, @Param("flag2") Integer flag2,
 			@Param("orderItemid") Integer orderItemid);
 
@@ -239,5 +239,9 @@ public interface OrderDao {
     @Insert("insert into t_orderitem(houseid,starttime,endtime,typeid,day,orderid,quantity,price) values(#{integer},#{starttime},#{endtime},#{typeid},#{day},#{orderid},1,#{price})")
 	public void addOrderitem(Integer integer, String starttime, String endtime, int typeid, int day, Integer orderid,BigDecimal price);
 
+ // 查找所有房间类型
+ 	@Select("select * from t_housetype where flag=1")
+ 	public List<HouseType> findAllType();
 
+    
 }

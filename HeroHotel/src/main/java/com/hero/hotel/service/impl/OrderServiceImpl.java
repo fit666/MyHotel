@@ -113,6 +113,13 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.findAllliveRoomsByTypeid(liveNotes);
 	}
 
+	// 找到所有房间类型
+		@Override
+		public List<HouseType> findAllType() {
+			List<HouseType> types = orderDao.findAllType();
+			return types;
+		}
+
 	//查询所有
 			@Override
 			public List<Info> findAllOrders() {

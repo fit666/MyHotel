@@ -10,6 +10,24 @@
 <link href="/backstage/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
 <link href="/backstage/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
 <link href="/backstage/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/backstage/js/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+		url:"/order/findalltype",
+		success:function(data){
+			$("select").html("");
+			$("select").append($('<option value="" selected>请选择房间类型</option>'));
+			for(var i = 0;i < data.length;i++){
+				var t=data[i];
+				var type=$('<option ></option>').val(t.typeid).html(t.hname);
+				$("select").append(type);
+			}
+		}
+	})
+	
+})
+</script>
 <title>添加用户</title>
 </head>
 <body>
@@ -65,10 +83,6 @@
       <div class="formControls col-5"> <span class="select-box">
         <select class="select" size="1" name="typeid" datatype="*" nullmsg="请选择房间类型！">
           <option value="" selected>请选择房间类型</option>
-          <option value="1">单人间</option>
-          <option value="2">标间</option>
-          <option value="3">家庭房</option>
-          <option value="3">套房</option>
         </select>
         </span> </div>
       <div class="col-4"> </div>

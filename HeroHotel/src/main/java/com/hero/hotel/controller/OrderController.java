@@ -137,6 +137,15 @@ public class OrderController {
 		model.setViewName("backstage-html/add-oder.html");
 		return model;
 	}
+	
+	// 查找所有房间类型
+		@RequestMapping("/findalltype")
+		@ResponseBody
+		public List<HouseType> findAllType() {
+			List<HouseType> types = orderService.findAllType();
+			return types;
+		}
+
 
 	// 查找某位客人的所有订单记录
 	@RequestMapping("/findorder")
