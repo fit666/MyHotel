@@ -61,7 +61,7 @@ public interface OrderDao {
 
 
 	// 查询个人信息id
-	@Select("select * from t_info where idcard = #{idcard} flag = 1")
+	@Select("select * from t_info where idcard = #{idcard} and flag = 1")
 	public Info findId(String idcard);
 
 	// 入住日志表插入数据
