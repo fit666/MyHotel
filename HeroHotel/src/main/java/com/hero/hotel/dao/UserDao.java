@@ -85,5 +85,9 @@ public interface UserDao {
 	// 根据手机号查找角色
 	@Select("select t_role.rolename from t_user inner join t_role on t_user.roleid=t_role.id where t_user.tel=#{tel} and t_user.flag=1 ")
 	public String findRoleByTel(String tel);
+	
+	//查找账号角色id
+	@Select("select roleid from t_user where account=#{account} and flag=1 ")
+	public Integer findRoleId(User user);
 
 }

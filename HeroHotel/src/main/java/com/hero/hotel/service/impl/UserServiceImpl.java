@@ -87,6 +87,15 @@ public class UserServiceImpl implements UserService {
 			result = "该账号不存在";
 			return result;
 		}
+		
+		//判断账号角色，只有普通用户才能进入前台
+		Integer roleid=userDao.findRoleId(realuser);
+		if(roleid!=1) {
+			result = "请切换普通用户";
+			return result;
+		}
+		
+		//shrio验证
 		Subject currentUser = SecurityUtils.getSubject();
 		if (!currentUser.isAuthenticated()) {
 			System.out.println("进入");
@@ -119,6 +128,7 @@ public class UserServiceImpl implements UserService {
 				return result;
 			} 
 		}
+		result="你已验证请先注销";
 		return result;
 	}
 
@@ -143,13 +153,19 @@ public class UserServiceImpl implements UserService {
 			result = "该手机号不存在";
 			return result;
 		}
+		//判断账号角色，只有普通用户才能进入前台
+				Integer roleid=userDao.findRoleId(realuser);
+				if(roleid!=1) {
+					result = "请切换普通用户";
+					return result;
+				}
 		// 获取session中的验证码
 		Object otpl_value = session.getAttribute("tpl_value");
 		if (otpl_value == null) {
 			result = "验证码失效，请重新获取";
 			return result;
 		}
-
+		//shrio验证
 		Subject currentUser = SecurityUtils.getSubject();
 		if (!currentUser.isAuthenticated()) {
 			CustomizedToken customizedToken = new CustomizedToken(user.getTel(), user.getCode(), USER_LOGIN_TYPE);

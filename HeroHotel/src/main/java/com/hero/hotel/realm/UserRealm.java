@@ -71,6 +71,7 @@ public class UserRealm extends AuthorizingRealm {
 		if(account.matches(RegexUtil.REGEX_MOBILE)) {
 			//手机登录
 			//从session中获取动态码
+			System.out.println("手机动态验证码验证");
 			HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder
 			        .getRequestAttributes()).getRequest();
 			String tpl_value=(String) request.getSession().getAttribute("tpl_value");
