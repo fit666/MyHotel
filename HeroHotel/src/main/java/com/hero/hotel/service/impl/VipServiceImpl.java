@@ -18,7 +18,7 @@ public class VipServiceImpl implements VipService{
 	@Override
 	public List<Vip> queryAllVip() {
 		// TODO Auto-generated method stub
-		return vipDao.queryAllVip();
+		return vipDao.findAllVips();
 	}
 	/*
 	 * 获取所有的vip信息(non-Javadoc)

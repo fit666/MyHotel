@@ -29,7 +29,7 @@ public class InfoController {
 			return null;
 		}
 		info.setUserid(user.getId());
-		if(infoService.addInfo(info)!=0) {
+		if(infoService.addInfo(info)) {
 			result="添加成功";
 		}
 		return result;

@@ -25,5 +25,5 @@ public interface VipDao {
 	//添加vip信息
 	@Insert("insert into t_vip(vname,vmoney,discount) values(#{vname},#{vmoney},#{discount})")
 	public boolean addVip(Vip vip);
-	public List<Vip> queryAllVip();
+	
 }

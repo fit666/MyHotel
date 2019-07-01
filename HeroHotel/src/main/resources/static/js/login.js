@@ -66,7 +66,7 @@ function login2(){
 			if(data!="登录成功"){
 				$("#message4").html(data);
 			}else{
-				location.href="index.html";
+				location.href="shuaixinjie/bookroom.html";
 		}
 		}
 		})

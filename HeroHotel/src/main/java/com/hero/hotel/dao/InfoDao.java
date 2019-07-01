@@ -30,6 +30,8 @@ public interface InfoDao {
 	//获取新插入的个人信息的id
 	@Select("select infoid from t_info where tel=#{tel} and flag=2")
 	public Integer findInfoidByMid(String tel);
+	
+	@Select("select infoid,uname,sex,idcard,tel from t_info where userid=#{infoid}")
 	public List<Info> queryInfoByTel(Integer id);
 
 

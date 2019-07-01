@@ -13,13 +13,13 @@ function show(pcurrentpage){
 				 for(var i=0;i<data.length;i++){
 					 var divnr=$(" <div class='guestbook_nr'></br>");
 					var divid=$(" <div style='border-bottom:1px #ddd solid' id='id' >留言编号:"+data[i].id+"</div>");
-					 var divmessage=$("<div id='message' >"+data[i].message+"</div>")
+					 var divmessage=$("<div id='message' >留言内容："+data[i].message+"</div>")
 					 divnr.append(divid);
 					 divnr.append(divmessage);
 					 div.append(divnr);
 					 var divform=$("<div class='guestbook_form'></div>");
 					 var label=$("<label id='name'  >昵称:"+data[i].name +"   </label>");
-					 var time=$("<span  style='text-align: right;' id='time' >评论时间:"+data[i].createtime+"</span>");
+					 var time=$("<span  style='text-align: right;' id='time' >评论时间:"+new Date(data[i].createtime).toJSON().substr(0, 10).replace('T', ' ')+"</span>");
 					 divform.append(label);
 					 divform.append(time);
 					 div.append(divform);

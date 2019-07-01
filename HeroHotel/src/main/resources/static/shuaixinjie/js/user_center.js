@@ -36,7 +36,6 @@ function showInfo(){
 	closeOrder();
 }
 function showOrders(){
-
 	$.ajax({
 		url:"../order/allOrders",
 		type:"post",
@@ -45,7 +44,6 @@ function showOrders(){
 		success:function(data){
 			var context="";
 			for(var i=0;i<data.length;i++){
-
 				var dat = new Date(data[i].createtime).toJSON().substr(0, 10).replace('T', ' ');
 				if(data[i].paynumber==null){
 					var pay = "";
@@ -61,9 +59,15 @@ function showOrders(){
 							+"<td><button class='btn btn-default btn-lg' data-toggle='modal' data-target='#myModal' onclick='addorder("+data[i].ordernumber+")' >评论</button></td>"
 							+"<td><button class='btn btn-default btn-lg' onclick='refu("+data[i].ordernumber+",\""+dat+"\")' >退款</button></td>"	
 							+"</tr>";
-			
 			};
-
+			context=context+"<tr><td colspan='7'></td></tr>";
+			$("#orders").html(context);
+			closeVip();
+			closeBox();
+			closePwd();
+			showOrder();
+			
+		}
 	})
 }
 function addorder(a){
@@ -117,10 +121,10 @@ function showVips(){
 			}
 			context=context+"<tr><td colspan='3'></td></tr>";
 			$("#vips").html(context);
-			showVip();
 			closeOrder();
 			closeBox();
 			closePwd();
+			showVip();
 		}
 	})
 }
@@ -129,8 +133,6 @@ function refu(a,c){
 	var time = new Date(time1).toJSON().substr(0, 10).replace('T', ' ').replace(/\-/g,"");
 		//time1.replace(/\//g,"\-");
 	var time2=c.replace(/\-/g,"");
-	alert(time);
-	alert(time2);
 	if(time<time2){
 		alert("订单已经超时");
 	}else{
@@ -172,11 +174,11 @@ function showPwd(){
 	$("#pwd").fadeIn("fast");
 }
 function showVip(){
-	$("#vip").fadeIn("fast");
+	$("#vipi").fadeIn("fast");
 }
 function closeOrder(){
 	$("#order").fadeOut("fast");
-	$("#orders").empty();
+	
 }
 function closeBox(){
 	$("#info").fadeOut("fast");
@@ -185,6 +187,6 @@ function closePwd(){
 	$("#pwd").fadeOut("fast");
 }
 function closeVip(){
-	$("#vip").fadeOut("fast");
-	$("#vips").empty();
+	$("#vipi").fadeOut("fast");
+	
 }

@@ -10,6 +10,6 @@ public interface InfoService {
 	
 	public List<Info> queryInfo(Integer integer);
 	
-	public int addInfo(Info info);
+	public boolean addInfo(Info info);
 
 }
