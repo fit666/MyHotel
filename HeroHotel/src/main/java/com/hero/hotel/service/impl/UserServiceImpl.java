@@ -419,8 +419,14 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> findAllDeletedVips() {
-
-		return userDao.findAllDeletedVips();
+		List<User> users=userDao.findAllDeletedVips();
+		for(User user:users){
+			Info info=user.getInfo();
+			if(info==null){
+				return null;
+			}
+		}
+		return users;
 	}
 
 	/**

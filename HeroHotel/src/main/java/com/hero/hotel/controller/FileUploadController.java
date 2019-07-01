@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.hero.hotel.service.HouseTypeService;
 import com.hero.hotel.utils.FileUtils;
 
 import java.math.BigDecimal;
@@ -16,7 +18,9 @@ import java.util.Map;
 
 @Controller
 public class FileUploadController {
-
+	@Autowired
+	private HouseTypeService houseTypeService;
+	
 	private  ResourceLoader RSLOADER;
 
 	@Autowired
@@ -44,36 +48,38 @@ public class FileUploadController {
 	 * @return
 	 */
 	@RequestMapping("/fileUpload")
-	public String upload(@RequestParam("imgurl") MultipartFile imgurl, 
+	public ModelAndView upload(@RequestParam("imgurl") MultipartFile imgurl, 
 			@RequestParam("hname") String hname,
 			@RequestParam("serve") String serve,
 			@RequestParam("breakfast") String breakfast,
-			@RequestParam("price") BigDecimal price,
-			Map<String, Object> map) {
+			@RequestParam("price") BigDecimal price) {
+		ModelAndView mav=new ModelAndView();
 		
-		System.out.println(imgurl+",,"+hname+",,"+serve+",,"+breakfast+",,"+price);
-		
+		System.out.println(hname+","+serve+","+breakfast+","+price);
 		// 要上传的目标文件存放路径
 		String localPath = path;
+		
+		
 		// 上传成功或者失败的提示
 		String msg = "";
-
-		if (!FileUtils.upload(imgurl, localPath, imgurl.getOriginalFilename()).equals("defeat")) {
-			//获取新的文件名
-			String newFileName=FileUtils.upload(imgurl, localPath, imgurl.getOriginalFilename());
+		//获取新的文件名
+		String newFileName=FileUtils.upload(imgurl, localPath, imgurl.getOriginalFilename());
+		
+		if (!newFileName.equals("defeat")) {
+			
+			System.out.println("newFileName:"+newFileName);
+			//将新的房间类型保存到数据库
+			String result=houseTypeService.addHouseType(hname,serve,breakfast,price,newFileName);
+			
 			
 			// 上传成功，给出页面提示
-			msg = "上传成功！";
-		} else {
-			msg = "上传失败！";
-
+			msg = result;
+		} else{
+			msg="图片上传失败，请联系管理员";
 		}
-
-		// 显示图片
-		map.put("msg", msg);
-		map.put("fileName", imgurl.getOriginalFilename());
-
-		return "/backstage-html/house-add.html";
+		mav.addObject("result", msg);
+		mav.setViewName("/backstage-html/house-add2.html");
+		return mav;
 	}
 
 	/**

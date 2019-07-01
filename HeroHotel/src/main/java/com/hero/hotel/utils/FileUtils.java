@@ -21,30 +21,32 @@ public class FileUtils {
 	 * @return
 	 */
 	public static String upload(MultipartFile file, String path, String fileName) {
-
+		 //创建文件夹
+		File images=new File(path);
+		if(!images.exists()) {
+			images.mkdirs();
+		}
+		
 		// 生成新的文件名
-		 String realPath = path + "/" + FileNameUtils.getFileName(fileName);
-
-		// 使用原文件名
-		//String realPath = path + "/" + fileName;
+		 String realPath = images + "\\"+FileNameUtils.getFileName(fileName);
+		 
 
 		File dest = new File(realPath);
-
+		
+/*
 		// 判断文件父目录是否存在
 		if (!dest.getParentFile().exists()) {
 			dest.getParentFile().mkdir();
-		}
+		}*/
 
 		try {
 			// 保存文件
 			file.transferTo(dest);
 			return  realPath;
 		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "defeat";
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "defeat";
 		}

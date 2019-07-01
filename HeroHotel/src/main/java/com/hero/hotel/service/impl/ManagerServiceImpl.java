@@ -119,7 +119,7 @@ public class ManagerServiceImpl implements ManagerService{
 				Integer mid=managerDao.findManagerPwd(manager.getAccount()).getId();
 				info.setUserid(mid);
 				//插入管理员的信息
-				boolean bo=infoDao.addInfo(info);
+				boolean bo=infoDao.addManagerInfo(info);
 				if(bo){
 					//在管理员的账号表添加infoid
 					Integer infoid=infoDao.findInfoidByMid(manager.getAccount());
@@ -162,7 +162,7 @@ public class ManagerServiceImpl implements ManagerService{
 					//把当前manager的id存在session中
 					Integer id=findManagerPwd(user.getAccount()).getId();
 					session.setAttribute("managerId",id);
-					result="success";
+					result="登录成功";
 				} catch (IncorrectCredentialsException ice) {
 					System.out.println("用户名/密码不匹配！");
 					result="用户名或密码错误，请重新输入";
@@ -171,7 +171,7 @@ public class ManagerServiceImpl implements ManagerService{
 					result="账户被冻结";
 				} catch (AuthenticationException ae) {
 					System.out.println(ae.getMessage());
-					result="认证出现异常";
+					result="用户名或密码错误，请重新输入";
 				}
 			}
 		}else{
