@@ -86,7 +86,7 @@
 		<!--start header -->
 		<header id="header">
 			<div id="logo">
-				<a href="index.html"><strong>英雄</strong>酒店</a>
+				<a href="index.html"><strong>HERO</strong>酒店</a>
 			</div>	
 			<div id="searchbox">
 				<form action="#">
@@ -251,7 +251,7 @@
 						<td><img src="images/tu2.jpg" style="height: 80px;"></td>
 						<td>单人间</td>
 						<td><input type="button" value="查看"></td>
-						<td>150元</td>
+						<td>100元</td>
 						<td>剩余<span id="singlenumber">*</span>间</td>
 						<td><input type="button" value="-" onclick="reduce1()">
 							<span id="single">0</span>
@@ -262,7 +262,7 @@
 						<td><img src="images/tu3.jpg" style="height: 80px;"></td>
 						<td>双人间</td>
 						<td><input type="button" value="查看"></td>
-						<td>200元</td>
+						<td>150元</td>
 						<td>剩余<span id="doublenumber">*</span>间</td>
 						<td><input type="button" value="-" onclick="reduce2()">
 							<span id="double">0</span>
@@ -273,7 +273,7 @@
 						<td><img src="images/tu1.jpg" style="height: 80px;"></td>
 						<td>小套房</td>
 						<td><input type="button" value="查看"></td>
-						<td>500元</td>
+						<td>300元</td>
 						<td>剩余<span id="trinumber">*</span>间</td>
 						<td><input type="button" value="-" onclick="reduce3()">
 							<span id="tri">0</span>
@@ -284,7 +284,7 @@
 						<td><img src="images/tu1.jpg" style="height: 80px;"></td>
 						<td>大套房</td>
 						<td><input type="button" value="查看"></td>
-						<td>500元</td>
+						<td>400元</td>
 						<td>剩余<span id="fournumber">*</span>间</td>
 						<td><input type="button" value="-" onclick="reduce4()">
 							<span id="four">0</span>
@@ -370,7 +370,6 @@
 					"days":days
 				},
 				success:function(data){
-					alert(data[1])
 					$("#singlenumber").html(data[1])
 					$("#doublenumber").html(data[2])
 					$("#trinumber").html(data[3])
@@ -413,7 +412,7 @@
 			success: function(result) {
 				if(result=="订单生产"){
 					location.href="order.html"
-				}else if(result="你还有订单未处理"){
+				}else if(result=="你还有订单未处理"){
 					alert(result)
 					location.href="order.html"
 				}

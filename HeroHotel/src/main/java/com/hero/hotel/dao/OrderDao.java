@@ -97,10 +97,10 @@ public interface OrderDao {
 			@Result(column = "infoid", property = "orders", many = @Many(select = "findAllOrders")) })
 	public List<Info> findAllInfo();
 
-	@Select("select * from t_order where flag = 1")
+	@Select("select * from t_order where infoid=#{infoid} and flag = 1")
 	@Results({ @Result(id = true, column = "orderid", property = "orderid"),
 			@Result(column = "orderid", property = "oderItems", many = @Many(select = "findAllOrderItem")) })
-	public List<Order> findAllOrders();
+	public List<Order> findAllOrders(Integer infoid);
 
 	@Select("select * from t_orderitem where orderid=#{orderid} and flag = 1")
 	public List<OrderItem> findAllOrderItem(Integer orderid);

@@ -56,9 +56,15 @@ function showOrders(){
 							+"<td>"+data[i].total+"</td>"
 							+"<td>"+data[i].payway+"</td>"
 							+"<td>"+pay+"</td>"
-							+"<td><button class='btn btn-default btn-lg' data-toggle='modal' data-target='#myModal' onclick='addorder("+data[i].ordernumber+")' >评论</button></td>"
-							+"<td><button class='btn btn-default btn-lg' onclick='refu("+data[i].ordernumber+",\""+dat+"\")' >退款</button></td>"	
-							+"</tr>";
+							if(pay==""){
+								context+="<td><button class='btn btn-default btn-lg' onclick='window.location.href=\"/shuaixinjie/order.html\"' >支付</button></td>"
+								
+							}else{
+								context+="<td><button class='btn btn-default btn-lg' data-toggle='modal' data-target='#myModal' onclick='addorder("+data[i].ordernumber+")' >评论</button></td>"
+								+"<td><button class='btn btn-default btn-lg' onclick='refu("+data[i].ordernumber+",\""+dat+"\")' >退款</button></td>"
+							}
+								
+				+"</tr>";
 			};
 			context=context+"<tr><td colspan='7'></td></tr>";
 			$("#orders").html(context);

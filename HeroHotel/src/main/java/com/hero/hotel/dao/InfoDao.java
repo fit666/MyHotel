@@ -34,5 +34,8 @@ public interface InfoDao {
 	@Select("select infoid,uname,sex,idcard,tel from t_info where userid=#{infoid}")
 	public List<Info> queryInfoByTel(Integer id);
 
+	@Insert("insert into t_info(tel,uname,sex,idcard,userid) values(#{tel},#{uname},#{sex},#{idcard},#{userid})")
+	public boolean addInfo(Info info);
+
 
 }

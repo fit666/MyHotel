@@ -195,18 +195,13 @@
 <!--FOOTER-->
 <div class="bottom">
 <a href="">网站首页</a>|
-<a href="">温泉预定</a>|
-<a href="">酒店预定</a>|
-<a href="">醉悦旅居</a>|
+<a href="">房间预定</a>|
+<a href="">房间预定</a>|
+<a href="">房间</a>|
 <a href="">养生餐饮</a>|
 <a href="">会议中心</a>|
 <a href="">促销活动</a>|
 <a href="">企业文化</a>
-</div>
-<div class="footer">
-地址：黄山市屯溪区花山路新徽天地醉温泉国际度假城&nbsp;&nbsp;&nbsp;&nbsp;邮编:236010<br/>
-电话：0559-2536999&nbsp;&nbsp;2568666&nbsp;&nbsp;&nbsp;&nbsp;免费预订电话：400-0559-700<br/>
-Copyright &copy; 2003-2014  黄山 &middot; 醉温泉&nbsp;&nbsp;All rights reserved.&nbsp;&nbsp;皖ICP备11009137号
 </div>
 <!--FOOTER-->
 </div>
@@ -252,26 +247,26 @@ function pay(){
                 for (var i = 0; i <orderitems.length; i++) {
                     if(orderitems[i].typeid==1){
                         houseT_one++;
-                        livetime1=orderitems[i].starttime;
-                        leavetime1=orderitems[i].endtime;
+                        livetime1=new Date(orderitems[i].starttime).toJSON().substr(0, 10).replace('T', ' ');
+                        leavetime1=new Date(orderitems[i].endtime).toJSON().substr(0, 10).replace('T', ' ');
                         priceT1+=orderitems[i].price;
                     }
                     if(orderitems[i].typeid==2){
                         houseT_two++;
-                        livetime2=orderitems[i].starttime;
-                        leavetime2=orderitems[i].endtime;
+                        livetime2=new Date(orderitems[i].starttime).toJSON().substr(0, 10).replace('T', ' ');
+                        leavetime2=new Date(orderitems[i].endtime).toJSON().substr(0, 10).replace('T', ' ');
                         priceT2+=orderitems[i].price;
                     }
                     if(orderitems[i].typeid==3){
                         houseT_three++;
-                        livetime3=orderitems[i].starttime;
-                        leavetime3=orderitems[i].endtime;
+                        livetime3=new Date(orderitems[i].starttime).toJSON().substr(0, 10).replace('T', ' ');
+                        leavetime3=new Date(orderitems[i].endtime).toJSON().substr(0, 10).replace('T', ' ');
                         priceT3+=orderitems[i].price;
                     }
                     if(orderitems[i].typeid==4){
                         houseT_four++;
-                        livetime4=orderitems[i].starttime;
-                        leavetime4=orderitems[i].endtime;
+                        livetime4=new Date(orderitems[i].starttime).toJSON().substr(0, 10).replace('T', ' ');
+                        leavetime4=new Date(orderitems[i].endtime).toJSON().substr(0, 10).replace('T', ' ');
                         priceT4+=orderitems[i].price;
                     }
                 }

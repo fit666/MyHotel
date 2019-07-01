@@ -47,7 +47,7 @@ public class OrderController {
 		int id = 1;// 还未获取
 		// 插入个人信息表
 				Info info2 = orderService.findId(info.getIdcard());
-				if (info2.getIdcard().equals(info.getIdcard())) {
+				if (info2!=null) {
 					order.setInfoid(info2.getInfoid());// 存入个人信息id
 				} else {
 					orderService.addInfo(info);
@@ -292,10 +292,12 @@ public class OrderController {
 
 			String result = "";
 			User user = (User) session.getAttribute("user");
+			System.out.println("user:"+user);
 			if (user==null){
 				result="请先登录";
 				return result;
 			}
+			System.out.println("useraaa");
 			Integer id = user.getId();
 			System.out.println("用户的id:"+id);
 			Vip vip = (Vip) user.getVip();
